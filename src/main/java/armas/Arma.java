@@ -3,24 +3,19 @@ package armas;
 
 public class Arma {
 
-    public static Ametralladora armaActual;
-   Ametralladora ametralladora;
-    Arma escopeta;
-    Arma cañon;
+    static int numeroDeBalasActuales;
+    static int cargador;
     int damage;
-
-    int numeroDeBalasActuales = 29;
 
     public void disparar() {
 
-       numeroDeBalasActuales = numeroDeBalasActuales-29;
+
     }
 
     public void recargar() {
 
-        if (numeroDeBalasActuales < 29) {
+        if (numeroDeBalasActuales == 0) {
 
-            numeroDeBalasActuales = numeroDeBalasActuales+29;
 
         }
 
@@ -28,7 +23,7 @@ public class Arma {
 
     public void balasActuales() {
 
-        System.out.println(numeroDeBalasActuales);
+        System.out.println("hay " + numeroDeBalasActuales + " bala[s]");
 
     }
 

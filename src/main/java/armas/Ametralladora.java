@@ -2,14 +2,13 @@ package armas;
 
 public class Ametralladora extends Arma{
 
-
-    public static Ametralladora armaActual;
-    int numeroDeBalasActuales = 20;
-
     @Override
     public void disparar(){
 
-        numeroDeBalasActuales = numeroDeBalasActuales-5;
+    Arma.numeroDeBalasActuales = 20;
+    Arma.cargador = 20;
+
+    numeroDeBalasActuales = numeroDeBalasActuales-20;
 
     }
     @Override
@@ -17,9 +16,8 @@ public class Ametralladora extends Arma{
 
         if (numeroDeBalasActuales == 0) {
 
-            numeroDeBalasActuales = numeroDeBalasActuales+20;
+        numeroDeBalasActuales = cargador+numeroDeBalasActuales;
 
+          }
         }
-
-    }
     }
