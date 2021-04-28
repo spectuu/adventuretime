@@ -1,4 +1,4 @@
-package armas;
+package com.spectu.game.armas;
 
 public class Ametralladora extends Arma {
 

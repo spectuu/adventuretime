@@ -1,8 +1,8 @@
 package com.spectu.game;
 
-import armas.Ametralladora;
-import armas.Cañon;
-import armas.Escopeta;
+import com.spectu.game.armas.Ametralladora;
+import com.spectu.game.armas.Cañon;
+import com.spectu.game.armas.Escopeta;
 
 public class Game {
 
