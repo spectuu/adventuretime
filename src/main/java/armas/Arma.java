@@ -3,27 +3,29 @@ package armas;
 
 public class Arma {
 
-    static int numeroDeBalasActuales;
-    static int cargador;
-    int damage;
+    int balasActuales;
+    int cargador;
+
+    public Arma(int balasActuales, int cargador) {
+        this.balasActuales = balasActuales;
+        this.cargador = cargador;
+    }
 
     public void disparar() {
-
 
     }
 
     public void recargar() {
 
-        if (numeroDeBalasActuales == 0) {
+        if (balasActuales == 0) {
 
 
         }
-
     }
 
     public void balasActuales() {
 
-        System.out.println("hay " + numeroDeBalasActuales + " bala[s]");
+        System.out.println("hay " + balasActuales + " bala[s]");
 
     }
 

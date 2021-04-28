@@ -2,26 +2,25 @@ package armas;
 
 public class Escopeta extends Arma{
 
+    public Escopeta() {
+
+        super(15, 15);
+
+
+    }
+
     @Override
     public void disparar(){
 
-        Arma.numeroDeBalasActuales = 15;
-        Arma.cargador = 15;
-
-        numeroDeBalasActuales = numeroDeBalasActuales-15;
-
+        balasActuales = balasActuales-5;
     }
 
     @Override
     public void recargar(){
 
-        if(numeroDeBalasActuales == 0){
+       if(balasActuales == 0){
 
-            numeroDeBalasActuales = numeroDeBalasActuales+cargador;
-
-        }
-
+           balasActuales = balasActuales+cargador;
+       }
     }
-
-
 }

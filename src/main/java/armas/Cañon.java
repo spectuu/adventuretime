@@ -2,25 +2,23 @@ package armas;
 
 public class Cañon extends Arma {
 
+    public Cañon() {
+        super(3, 3);
+    }
 
     @Override
     public void disparar(){
 
-        Arma.numeroDeBalasActuales = 3;
-        Arma.cargador = 3;
-
-        numeroDeBalasActuales = numeroDeBalasActuales-3;
+        balasActuales = balasActuales-1;
 
     }
 
     @Override
     public void recargar(){
 
-        if(numeroDeBalasActuales == 0){
+        if(balasActuales == 0){
 
-            numeroDeBalasActuales = numeroDeBalasActuales+cargador;
-
+            balasActuales = balasActuales+cargador;
         }
     }
-
 }

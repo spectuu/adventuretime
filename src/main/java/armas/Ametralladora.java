@@ -1,23 +1,26 @@
 package armas;
 
-public class Ametralladora extends Arma{
+public class Ametralladora extends Arma {
+
+    public Ametralladora() {
+        super(30, 30);
+    }
 
     @Override
-    public void disparar(){
+    public void disparar() {
 
-    Arma.numeroDeBalasActuales = 20;
-    Arma.cargador = 20;
-
-    numeroDeBalasActuales = numeroDeBalasActuales-20;
+        balasActuales = balasActuales-10;
 
     }
+
     @Override
     public void recargar() {
 
-        if (numeroDeBalasActuales == 0) {
+        if (balasActuales == 0) {
 
-        numeroDeBalasActuales = cargador+numeroDeBalasActuales;
+            balasActuales = balasActuales+cargador;
 
-          }
         }
+
     }
+}
