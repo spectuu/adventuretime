@@ -4,15 +4,16 @@ import com.spectu.game.armas.Arma;
 
 public class Entidad {
 
-    int vida;
+
+
     String nombre;
+    int vida;
 
     public Entidad(String nombre, int vida){
 
-        this.nombre = nombre;
         this.vida = vida;
+        this.nombre = nombre;
+
     }
-
-
 
 }

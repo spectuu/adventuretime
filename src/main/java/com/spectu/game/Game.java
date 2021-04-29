@@ -24,7 +24,7 @@ public class Game {
         this.cañon = new Cañon();
         this.ametralladora = new Ametralladora();
         this.escopeta = new Escopeta();
-        this.jugador = new Jugador(nombre, 100);
+        this.jugador = new Jugador(nombre);
     }
 
     public void start() {
@@ -49,6 +49,12 @@ public class Game {
 
             jugador.vidaActual();
 
+        }
+
+        if(menuPrincipal.equals("curar")){
+
+            jugador.curar();
+            jugador.vidaActual();
         }
 
         if(menuPrincipal.equals("atacar")){
