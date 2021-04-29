@@ -3,7 +3,7 @@ package com.spectu.game.armas;
 public class Ametralladora extends Arma {
 
     public Ametralladora() {
-        super(30, 30);
+        super(30, 30, 5);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.spectu.game.armas;
 public class Cañon extends Arma {
 
     public Cañon() {
-        super(3, 3);
+        super(3, 3, 40);
     }
 
     @Override
@@ -19,6 +19,7 @@ public class Cañon extends Arma {
         if(balasActuales == 0){
 
             balasActuales = balasActuales+cargador;
+            
         }
     }
 }

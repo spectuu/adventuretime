@@ -5,10 +5,12 @@ public class Arma {
 
     int balasActuales;
     int cargador;
+    int daño;
 
-    public Arma(int balasActuales, int cargador) {
+    public Arma(int balasActuales, int cargador, int daño) {
         this.balasActuales = balasActuales;
         this.cargador = cargador;
+        this.daño = daño;
     }
 
     public void disparar() {

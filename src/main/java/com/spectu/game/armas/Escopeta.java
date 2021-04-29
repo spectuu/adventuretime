@@ -4,8 +4,7 @@ public class Escopeta extends Arma{
 
     public Escopeta() {
 
-        super(15, 15);
-
+        super(15, 15, 30);
 
     }
 
