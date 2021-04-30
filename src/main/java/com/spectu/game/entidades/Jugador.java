@@ -7,8 +7,8 @@ public class Jugador extends Entidad {
     public int botequin = 5;
     public Arma armaActual;
 
-    public Jugador(String nombre, int vida) {
-        super(nombre, vida);
+    public Jugador(String nombre) {
+        super(nombre, 100);
 
     }
 

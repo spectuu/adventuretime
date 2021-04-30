@@ -16,7 +16,7 @@ public class Entidad {
 
     }
 
-    public void setNombre(String nombre, int vida) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
