@@ -31,9 +31,9 @@ public class Game {
 
         System.out.println("Ingresa el nombre de tu personaje: ");
         nombre = scanner.getString();
+        jugador.setNombre(nombre);
 
-        System.out.println("Bienvenido a AdventureTime " + nombre + " Espero y te diviertas! :3");
-
+        System.out.println("Bienvenido a AdventureTime " + jugador.getNombre() + " Espero y te diviertas! :3");
 
         while(true)
             update();
@@ -42,49 +42,54 @@ public class Game {
 
     public void update() {
 
-        System.out.println("Menu principal");
-        String menuPrincipal = scanner.getString();
+        System.out.println("hola " + jugador.getNombre() + " Este es el menu principal y sus comandos:" +
+               "\n" + "coloca 1 para ver tu vida actual " + "\n" + "2 para curarte " + "\n" + "3 para cambiar de arma" + "\n" + "4 para disparar el arma" + "\n" + "ingresa un numero:");
+        int menuPrincipal = scanner.getInt();
 
-        if(menuPrincipal.equals("vidaActual")){
+        if(menuPrincipal == 1){
 
             jugador.vidaActual();
+            return;
 
         }
 
-        if(menuPrincipal.equals("curar")){
+        if(menuPrincipal == 2){
 
             jugador.curar();
             jugador.vidaActual();
+            return;
         }
 
-        if(menuPrincipal.equals("atacar")){
+        if(menuPrincipal == 3){
 
+            int arma = scanner.getInt();
 
+            if(arma == 1){
+
+                jugador.armaActual = ametralladora;
+                return;
+            }
+
+            if(arma == 2){
+
+               jugador.armaActual = escopeta;
+                return;
+            }
+
+            if(arma == 3){
+
+                jugador.armaActual = cañon;
+                return;
+            }
 
         }
 
-        if(menuPrincipal.equals("disparar 1")){
+        if(menuPrincipal == 4){
 
-        ametralladora.disparar();
-        ametralladora.recargar();
-        ametralladora.balasActuales();
-
-        }
-
-        if(menuPrincipal.equals("disparar 2")){
-
-        cañon.disparar();
-        cañon.recargar();
-        cañon.balasActuales();
-
-        }
-
-        if(menuPrincipal.equals("disparar 3")){
-
-            escopeta.disparar();
-            escopeta.recargar();
-            escopeta.balasActuales();
-
+            jugador.armaActual.disparar();
+            jugador.armaActual.recargar();
+            jugador.armaActual.balasActuales();
+            return;
         }
 
     }

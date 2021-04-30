@@ -16,4 +16,14 @@ public class Entidad {
 
     }
 
+    public void setNombre(String nombre, int vida) {
+        this.nombre = nombre;
+    }
+
+    public String getNombre() {
+
+        return nombre;
+
+    }
+
 }

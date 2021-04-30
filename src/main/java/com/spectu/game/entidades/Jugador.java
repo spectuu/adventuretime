@@ -1,11 +1,14 @@
 package com.spectu.game.entidades;
 
+import com.spectu.game.armas.Arma;
+
 public class Jugador extends Entidad {
 
-    int botequin = 5;
+    public int botequin = 5;
+    public Arma armaActual;
 
-    public Jugador(String nombre) {
-        super(nombre, 50);
+    public Jugador(String nombre, int vida) {
+        super(nombre, vida);
 
     }
 
@@ -18,21 +21,20 @@ public class Jugador extends Entidad {
 
         if(botequin > 0){
 
+            vida = vida+50;
             botequin = botequin-1;
 
-         vida = vida+50;
 
-        }
-
-        if(botequin == 0){
+        }else if(botequin == 0){
 
             System.out.println("No tienes botequines");
+            return;
         }
 
-         if(vida == 500){
+         if(vida == 100){
 
          botequin = 0;
-
+         return;
          }
 
 
