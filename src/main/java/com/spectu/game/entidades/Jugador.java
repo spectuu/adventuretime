@@ -6,6 +6,7 @@ public class Jugador extends Entidad {
 
     public int botequin = 5;
     public Arma armaActual;
+    public int vida = 100;
 
     public Jugador(String nombre) {
         super(nombre, 100);
@@ -19,6 +20,13 @@ public class Jugador extends Entidad {
 
     public void curar(){
 
+        if(vida == 100){
+
+            botequin = 0;
+
+            return;
+        }
+
         if(botequin > 0){
 
             vida = vida+50;
@@ -30,13 +38,6 @@ public class Jugador extends Entidad {
             System.out.println("No tienes botequines");
             return;
         }
-
-         if(vida == 100){
-
-         botequin = 0;
-         return;
-         }
-
 
 
     }

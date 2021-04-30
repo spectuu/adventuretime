@@ -2,8 +2,6 @@ package com.spectu.game.entidades;
 
 public class Monstruo extends Entidad {
 
-    Jugador jugador = new Jugador(nombre);
-
     int daño = 15;
 
     public Monstruo(int daño){
@@ -15,7 +13,6 @@ public class Monstruo extends Entidad {
 
     public void atacar(){
 
-        daño = jugador.vida-daño;
 
     }
 }

@@ -42,8 +42,12 @@ public class Game {
 
     public void update() {
 
-        System.out.println("hola " + jugador.getNombre() + " Este es el menu principal y sus comandos:" +
-               "\n" + "coloca 1 para ver tu vida actual " + "\n" + "2 para curarte " + "\n" + "3 para cambiar de arma" + "\n" + "4 para disparar el arma" + "\n" + "ingresa un numero:");
+        System.out.println("Comandos: ");
+        System.out.println("[1] para ver tu vida actual.");
+        System.out.println("[2] para curarte.");
+        System.out.println("[3] para seleccionar un arma.");
+        System.out.println("[4] para disparar el arma.");
+
         int menuPrincipal = scanner.getInt();
 
         if(menuPrincipal == 1){
@@ -55,13 +59,24 @@ public class Game {
 
         if(menuPrincipal == 2){
 
-            jugador.curar();
-            jugador.vidaActual();
+
+
+            if(jugador.vida == 100){
+
+                System.out.println("Tu vida actual es 100 a si que no puedes curarte");
+            }else{
+
+                jugador.curar();
+
+            }
+
             return;
+
         }
 
         if(menuPrincipal == 3){
 
+            System.out.println("Selecciona el arma que vas a usar [1 para la ametralladora, 2 para la escopeta, 3 para el cañon]");
             int arma = scanner.getInt();
 
             if(arma == 1){
@@ -72,7 +87,7 @@ public class Game {
 
             if(arma == 2){
 
-               jugador.armaActual = escopeta;
+                jugador.armaActual = escopeta;
                 return;
             }
 
@@ -82,18 +97,33 @@ public class Game {
                 return;
             }
 
+
+
         }
 
-        if(menuPrincipal == 4){
 
-            jugador.armaActual.disparar();
-            jugador.armaActual.recargar();
-            jugador.armaActual.balasActuales();
-            return;
+
+
+            if(menuPrincipal == 4){
+
+                if(jugador.armaActual == null){
+
+                    System.out.println("Antes tienes que seleccionar un arma.");
+                }
+
+                jugador.armaActual.disparar();
+                jugador.armaActual.recargar();
+                jugador.armaActual.balasActuales();
+
+
+            }
+
+
         }
+
+
 
     }
 
 
 
-}
