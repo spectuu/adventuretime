@@ -10,7 +10,6 @@ public class Jugador extends Entidad {
 
     public Jugador(String nombre) {
         super(nombre, 100);
-
     }
 
     public void vidaActual(){
@@ -30,6 +29,11 @@ public class Jugador extends Entidad {
         if(botequin > 0){
 
             vida = vida+50;
+
+            if(vida > 100+50 ){
+
+                vida = 100;
+            }
             botequin = botequin-1;
 
 

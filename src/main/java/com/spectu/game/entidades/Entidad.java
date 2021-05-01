@@ -4,8 +4,6 @@ import com.spectu.game.armas.Arma;
 
 public class Entidad {
 
-
-
     String nombre;
     int vida;
 

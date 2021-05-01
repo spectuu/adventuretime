@@ -14,7 +14,7 @@ public class Game {
     public Ametralladora ametralladora;
     public Escopeta escopeta;
     public Jugador jugador;
-    public Monstruo monstruo;
+    public Monstruo monstruo1;
     public String nombre;
 
     public Game() {
@@ -25,6 +25,7 @@ public class Game {
         this.ametralladora = new Ametralladora();
         this.escopeta = new Escopeta();
         this.jugador = new Jugador(nombre);
+        this.monstruo1 = new Monstruo(15);
     }
 
     public void start() {
@@ -64,6 +65,7 @@ public class Game {
             if(jugador.vida == 100){
 
                 System.out.println("Tu vida actual es 100 a si que no puedes curarte");
+
             }else{
 
                 jugador.curar();
@@ -82,18 +84,21 @@ public class Game {
             if(arma == 1){
 
                 jugador.armaActual = ametralladora;
+                System.out.println("El arma actual es la ametralladora");
                 return;
             }
 
             if(arma == 2){
 
                 jugador.armaActual = escopeta;
+                System.out.println("El arma actual es la escopeta");
                 return;
             }
 
             if(arma == 3){
 
                 jugador.armaActual = cañon;
+                System.out.println("El arma actual es el cañon");
                 return;
             }
 
@@ -109,15 +114,19 @@ public class Game {
                 if(jugador.armaActual == null){
 
                     System.out.println("Antes tienes que seleccionar un arma.");
+                }else{
+
+                    jugador.armaActual.disparar();
+                    jugador.armaActual.recargar();
+                    jugador.armaActual.balasActuales();
                 }
-
-                jugador.armaActual.disparar();
-                jugador.armaActual.recargar();
-                jugador.armaActual.balasActuales();
-
-
             }
 
+            if(menuPrincipal == 5){
+
+                monstruo1.atacarJugador(jugador);
+
+            }
 
         }
 
