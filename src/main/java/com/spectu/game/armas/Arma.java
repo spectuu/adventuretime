@@ -5,7 +5,7 @@ public class Arma {
 
     int balasActuales;
     int cargador;
-    int daño;
+    public int daño;
 
     public Arma(int balasActuales, int cargador, int daño) {
         this.balasActuales = balasActuales;

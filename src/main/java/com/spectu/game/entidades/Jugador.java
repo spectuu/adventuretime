@@ -46,5 +46,9 @@ public class Jugador extends Entidad {
 
     }
 
+    public void atacarMonstruo(Monstruo monstruo){
+
+        monstruo.vida = armaActual.daño-monstruo.vida;
+    }
 
 }
