@@ -3,34 +3,38 @@ package com.spectu.game.armas;
 public class Cañon extends Arma {
 
     public Cañon() {
-        super(3, 15, 40);
+        super(3, 3, 40, 3, 1);
     }
 
-    int recargar = 15;
 
     @Override
     public void disparar(){
 
-        balasActuales = balasActuales-1;
+      if(balasActuales >= gastoDeBalas){
+
+          balasActuales = balasActuales-gastoDeBalas;
+      }else{
+          System.out.println("Antes tienes que recargar");
+      }
 
     }
 
     @Override
     public void recargar(){
 
-        if(balasActuales == 0){
+        if(cargador <= 0){
+
+            System.out.println("No tienes cargadores");
+
+
+        } else {
 
             balasActuales = balasActuales+recargar;
             System.out.println("El arma se esta recargando");
 
             cargador = cargador-1;
-        }
-        if(cargador == 0){
-
-            balasActuales = 0;
-            recargar = 0;
-            System.out.println("No tienes cargadores");
 
         }
+
     }
 }

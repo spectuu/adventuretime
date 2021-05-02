@@ -3,13 +3,18 @@ package com.spectu.game.armas;
 
 public class Arma {
 
-    int balasActuales;
-    int cargador;
-    public int daño;
+   public int balasActuales;
+   public int cargador;
+   public int recargar;
+   public int gastoDeBalas;
+   public int daño;
 
-    public Arma(int balasActuales, int cargador, int daño) {
+    public Arma(int balasActuales, int cargador, int daño, int recargar, int gastoDeBalas) {
+
         this.balasActuales = balasActuales;
         this.cargador = cargador;
+        this.recargar = recargar;
+        this.gastoDeBalas = gastoDeBalas;
         this.daño = daño;
     }
 

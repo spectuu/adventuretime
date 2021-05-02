@@ -7,6 +7,8 @@ import com.spectu.game.entidades.Jugador;
 import com.spectu.game.entidades.Monstruo;
 import com.spectu.game.lugares.Lugar;
 import com.spectu.game.objetos.Botequin;
+import com.spectu.game.objetos.Inventario;
+import com.spectu.game.objetos.PotenciadorDeDañoNivel1;
 
 public class Game {
 
@@ -19,7 +21,11 @@ public class Game {
     public Monstruo monstruo1;
     public Botequin botequin;
     public Lugar lugar;
+    public PotenciadorDeDañoNivel1 potenciadorDeDañoNivel1;
+    public Inventario inventario;
     public String nombre;
+
+    public long potenciadorHasta = 0;
 
 
     public Game() {
@@ -31,6 +37,8 @@ public class Game {
         this.escopeta = new Escopeta();
         this.lugar = new Lugar();
         this.botequin = new Botequin();
+        this.inventario = new Inventario();
+        this.potenciadorDeDañoNivel1 = new PotenciadorDeDañoNivel1();
         this.jugador = new Jugador(nombre);
         this.monstruo1 = new Monstruo(15);
     }
@@ -55,6 +63,11 @@ public class Game {
         System.out.println("[2] para curarte.");
         System.out.println("[3] para seleccionar un arma.");
         System.out.println("[4] para explorar");
+        System.out.println("[5] para ver tu inventario");
+
+        if(potenciadorActivado()) {
+            System.out.println("El potenciador activado!");
+        }
 
         int menuPrincipal = scanner.getInt();
 
@@ -112,18 +125,40 @@ public class Game {
 
         }
 
-        if(menuPrincipal == 4){
+        if (menuPrincipal == 4) {
 
-            System.out.println("¿Estas seguro de que quieres explorar? [[Escribe true para responder si] o [escribe false para responder no]");
+            System.out.println("¿Estas seguro de que quieres explorar? [[Escribe true para responder si] o [escribe false para responder no]]");
             boolean explorarPregunta = scanner.getBoolean();
-            if(explorarPregunta == true){
+            if (explorarPregunta == true) {
 
-                lugar.explorar(botequin);
+                lugar.explorar(botequin, ametralladora, escopeta, cañon, potenciadorDeDañoNivel1);
 
-             }
-          }
+            }
+        }
+        if(menuPrincipal == 5){
+
+            inventario.mostrarInventario(botequin, ametralladora, escopeta, cañon);
+        }
+        if(menuPrincipal == 6){
+
+            potenciadorDeDañoNivel1.d(ametralladora, escopeta, cañon);
+
+        }
+        if(menuPrincipal == 7){
+
+            potenciadorDeDañoNivel1.usarPotenciador(this, ametralladora, escopeta, cañon);
+
         }
     }
+
+    public boolean potenciadorActivado() {
+
+        return potenciadorHasta >= System.currentTimeMillis();
+
+    }
+
+
+}
 
 
 
