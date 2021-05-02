@@ -5,7 +5,8 @@ import com.spectu.game.armas.Cañon;
 import com.spectu.game.armas.Escopeta;
 import com.spectu.game.entidades.Jugador;
 import com.spectu.game.entidades.Monstruo;
-import com.spectu.game.inventario.Inventario;
+import com.spectu.game.lugares.Lugar;
+import com.spectu.game.objetos.Botequin;
 
 public class Game {
 
@@ -16,7 +17,8 @@ public class Game {
     public Escopeta escopeta;
     public Jugador jugador;
     public Monstruo monstruo1;
-    public Inventario inventario;
+    public Botequin botequin;
+    public Lugar lugar;
     public String nombre;
 
 
@@ -27,9 +29,10 @@ public class Game {
         this.cañon = new Cañon();
         this.ametralladora = new Ametralladora();
         this.escopeta = new Escopeta();
+        this.lugar = new Lugar();
+        this.botequin = new Botequin();
         this.jugador = new Jugador(nombre);
         this.monstruo1 = new Monstruo(15);
-        this.inventario = new Inventario();
     }
 
     public void start() {
@@ -48,17 +51,17 @@ public class Game {
     public void update() {
 
         System.out.println("Comandos: ");
-        System.out.println("[1] para ver tu vida actual.");
+        System.out.println("[1] para ver tu vida actual y ver tus botequines actuales.");
         System.out.println("[2] para curarte.");
         System.out.println("[3] para seleccionar un arma.");
-        System.out.println("[4] para disparar el arma.");
-        System.out.println("[5] para ver tu inventario");
+        System.out.println("[4] para explorar");
 
         int menuPrincipal = scanner.getInt();
 
         if (menuPrincipal == 1) {
 
             jugador.vidaActual();
+            botequin.numeroDeBotequines();
             return;
 
         }
@@ -72,7 +75,7 @@ public class Game {
 
             } else {
 
-                jugador.curar();
+                botequin.curar(jugador);
 
             }
 
@@ -109,38 +112,18 @@ public class Game {
 
         }
 
+        if(menuPrincipal == 4){
 
-        if (menuPrincipal == 4) {
+            System.out.println("¿Estas seguro de que quieres explorar? [[Escribe true para responder si] o [escribe false para responder no]");
+            boolean explorarPregunta = scanner.getBoolean();
+            if(explorarPregunta == true){
 
-            if (jugador.armaActual == null) {
+                lugar.explorar(botequin);
 
-                System.out.println("Antes tienes que seleccionar un arma.");
-            } else {
-
-                jugador.armaActual.disparar();
-                jugador.armaActual.recargar();
-                jugador.armaActual.balasActuales();
-            }
+             }
+          }
         }
-
-        if (menuPrincipal == 5) {
-
-            if (jugador.armaActual == null) {
-
-                System.out.println("Antes tienes que seleccionar un arma.");
-
-
-            }else{
-
-                jugador.atacarMonstruo(monstruo1);
-
-            }
-
-        }
-
-
     }
-}
 
 
 

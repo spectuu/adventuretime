@@ -24,4 +24,11 @@ public class ScannerWrapper {
 
     }
 
+    public boolean getBoolean(){
+
+        boolean scannerBoolean = scanner.nextBoolean();
+        getString();
+        return scannerBoolean;
+    }
+
 }
