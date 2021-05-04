@@ -9,6 +9,7 @@
         <module name="AdventureTime" />
         <module name="adventuretime" />
         <module name="adventuretime-master" />
+        <module name="RPGQuest" />
       </profile>
     </annotationProcessing>
   </component>

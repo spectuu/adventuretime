@@ -17,9 +17,7 @@ public class Game {
     public String nombre;
     public Lugar lugar;
     public Hierro hierro;
-    public Espada espada;
-    public Arco arco;
-    public Hacha hacha;
+
 
     public Game() {
         
@@ -28,10 +26,6 @@ public class Game {
         this.medicina = new Medicina();
         this.lugar = new Lugar();
         this.hierro = new Hierro();
-        this.espada = new Espada();
-        this.arco = new Arco();
-        this.hacha = new Hacha();
-
         
     }
 
@@ -74,89 +68,12 @@ public class Game {
 
         if(comando == 3){
 
-            System.out.println("Estas en el menu de armas aqui podras ver los atributos del arma y seleccionarla para la batalla escribe:");
-            System.out.println("[1] para la espada.");
-            System.out.println("[2] para el arco.");
-            System.out.println("[3] para el hacha.");
-            System.out.println("[4] para reparar un arma");
-            int vistaArma = scanner.getInt();
+            jugador.seleccionarArma();
 
-            if(vistaArma == 1){
-
-                System.out.println("Tipo de arma: " + espada.tipoDeArma);
-                System.out.println("Daño: " + espada.daño);
-                System.out.println("Durabilidad: " + espada.durabilidad);
-                System.out.println("¿Quieres seleccionar la espada?");
-                System.out.println("[Escribe si o no]");
-                String  seleccionDeArma = scanner.getString();
-
-                if(seleccionDeArma.equals("si")){
-
-                    jugador.armaActual = espada;
-                    System.out.println("El arma actual es la espada");
-
-                }else{
-                    return;
-                }
-            }
-
-            if(vistaArma == 2){
-
-                System.out.println("Tipo de arma: " + arco.tipoDeArma);
-                System.out.println("Daño: " + arco.daño);
-                System.out.println("Durabilidad: " + arco.durabilidad);
-                System.out.println("¿Quieres seleccionar el arco?");
-                System.out.println("[Escribe si o no]");
-                String  seleccionDeArma = scanner.getString();
-
-                if(seleccionDeArma.equals("si")){
-
-                    jugador.armaActual = arco;
-                    System.out.println("El arma actual es el arco");
-
-                }else{
-
-                    return;
-                }
-            }
-
-            if(vistaArma == 3){
-
-                System.out.println("Tipo de arma: " + hacha.tipoDeArma);
-                System.out.println("Daño: " + hacha.daño);
-                System.out.println("Durabilidad: " + hacha.durabilidad);
-                System.out.println("¿Quieres seleccionar el hacha?");
-                System.out.println("[Escribe si o no]");
-                String  seleccionDeArma = scanner.getString();
-
-                if(seleccionDeArma.equals("si")){
-
-                    jugador.armaActual = hacha;
-                    System.out.println("El arma actual es el hacha");
-
-                }else{
-
-                    return;
-                }
-            }
-
-            if(vistaArma == 4){
-
-                System.out.println("Para reparar un arma debes tener un tipo de objeto esta es la lista: ");
-                System.out.println("[1] para reparar la espada [para reparar la espada necesitaras hierro]");
-                int repararArma = scanner.getInt();
-
-                if(repararArma == 1){
-
-                    hierro.usarHierro(espada);
-
-
-                }
-            }
         }
         if(comando == 4){
 
-            lugar.explorar(medicina);
+            lugar.explorar(medicina, jugador);
 
         }
 
