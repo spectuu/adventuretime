@@ -12,7 +12,7 @@ public class Lugar {
 
     private ScannerWrapper scanner;
     
-    public void explorar(Medicina vendas, Jugador jugador){
+    public void explorar(Medicina vendas, Jugador jugador, Hierro hierro){
 
         if(jugador.armaActual == null){
 
@@ -72,6 +72,45 @@ public class Lugar {
                     System.out.println("Seleccion el arma con la que vas a atacar:");
 
                         jugador.seleccionarArma();
+
+                    }
+
+                if(fantasma.vida == 0){
+
+                    int botin = ThreadLocalRandom.current().nextInt(1 + (100 + 1));
+                    int botin2 = ThreadLocalRandom.current().nextInt(1 + (3 + 1));
+                    int botin3 = ThreadLocalRandom.current().nextInt(1 + (2+1));
+
+                    System.out.println("Felicidades has derrotado al enemigo!");
+                    System.out.println("BOTIN:");
+
+                    if(botin > 20){
+
+                        vendas.cantidad = vendas.cantidad+botin2;
+                        hierro.cantidad = hierro.cantidad+botin3;
+
+                    }
+
+                 }else if(jugador.vida == 0){
+
+                    System.out.println("Has muerto ahora dedice: ");
+                    System.out.println("[Escribe [1] para vivir]");
+                    System.out.println("Escribe [2] para morir");
+                    System.out.println("[si elijes vivir perderas objetos]");
+                    System.out.println("[si elijes morir acabara el juego]");
+
+                    int vivirOMorir = scanner.getInt();
+
+                    if(vivirOMorir == 1){
+
+                        int perdida = ThreadLocalRandom.current().nextInt(1, (2+3));
+
+                        hierro.cantidad = hierro.cantidad-perdida;
+                        vendas.cantidad = vendas.cantidad-perdida;
+
+                    }else if(vivirOMorir == 2){
+
+                    }
 
                     }
                 }
