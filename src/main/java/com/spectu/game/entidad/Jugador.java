@@ -29,7 +29,7 @@ public class Jugador extends Entidad {
 
     public void seleccionarArma() {
 
-        System.out.println("Estas en el menu de armas aqui podras ver los atributos del arma y seleccionarla para la batalla escribe:");
+        System.out.println("Selecciona un arma usando: ");
         System.out.println("[1] para la espada.");
         System.out.println("[2] para el arco.");
         System.out.println("[3] para el hacha.");
@@ -38,6 +38,7 @@ public class Jugador extends Entidad {
 
         if (vistaArma == 1) {
 
+            System.out.println("ATRIBUTOS:");
             System.out.println("Tipo de arma: " + espada.tipoDeArma);
             System.out.println("Daño: " + espada.daño);
             System.out.println("Durabilidad: " + espada.durabilidad);
@@ -57,6 +58,7 @@ public class Jugador extends Entidad {
 
         if (vistaArma == 2) {
 
+            System.out.println("ATRIBUTOS:");
             System.out.println("Tipo de arma: " + arco.tipoDeArma);
             System.out.println("Daño: " + arco.daño);
             System.out.println("Durabilidad: " + arco.durabilidad);
@@ -77,6 +79,7 @@ public class Jugador extends Entidad {
 
         if (vistaArma == 3) {
 
+            System.out.println("ATRIBUTOS:");
             System.out.println("Tipo de arma: " + hacha.tipoDeArma);
             System.out.println("Daño: " + hacha.daño);
             System.out.println("Durabilidad: " + hacha.durabilidad);
