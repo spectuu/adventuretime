@@ -1,46 +1,38 @@
 package com.spectu.game;
 
-import com.spectu.game.armas.Ametralladora;
-import com.spectu.game.armas.Cañon;
-import com.spectu.game.armas.Escopeta;
-import com.spectu.game.entidades.Jugador;
-import com.spectu.game.entidades.Monstruo;
-import com.spectu.game.lugares.Lugar;
-import com.spectu.game.objetos.Botequin;
-import com.spectu.game.objetos.Inventario;
-import com.spectu.game.objetos.PotenciadorDeDañoNivel1;
+import com.spectu.game.arma.Arco;
+import com.spectu.game.arma.Espada;
+import com.spectu.game.arma.Hacha;
+import com.spectu.game.entidad.Jugador;
+import com.spectu.game.mundo.Lugar;
+import com.spectu.game.objeto.Hierro;
+import com.spectu.game.objeto.Medicina;
 
 public class Game {
 
     private ScannerWrapper scanner;
 
-    public Cañon cañon;
-    public Ametralladora ametralladora;
-    public Escopeta escopeta;
     public Jugador jugador;
-    public Monstruo monstruo1;
-    public Botequin botequin;
-    public Lugar lugar;
-    public PotenciadorDeDañoNivel1 potenciadorDeDañoNivel1;
-    public Inventario inventario;
+    public Medicina medicina;
     public String nombre;
-
-    public long potenciadorHasta = 0;
-
+    public Lugar lugar;
+    public Hierro hierro;
+    public Espada espada;
+    public Arco arco;
+    public Hacha hacha;
 
     public Game() {
+        
         this.scanner = new ScannerWrapper();
-
-
-        this.cañon = new Cañon();
-        this.ametralladora = new Ametralladora();
-        this.escopeta = new Escopeta();
-        this.lugar = new Lugar();
-        this.botequin = new Botequin();
-        this.inventario = new Inventario();
-        this.potenciadorDeDañoNivel1 = new PotenciadorDeDañoNivel1();
         this.jugador = new Jugador(nombre);
-        this.monstruo1 = new Monstruo(15);
+        this.medicina = new Medicina();
+        this.lugar = new Lugar();
+        this.hierro = new Hierro();
+        this.espada = new Espada();
+        this.arco = new Arco();
+        this.hacha = new Hacha();
+
+        
     }
 
     public void start() {
@@ -49,7 +41,7 @@ public class Game {
         nombre = scanner.getString();
         jugador.setNombre(nombre);
 
-        System.out.println("Bienvenido a AdventureTime " + jugador.getNombre() + " Espero y te diviertas! :3");
+        System.out.println("Bienvenido " +  "a RPGQuest " + jugador.getNombre() + " espero y te diviertas! \n");
 
         while (true)
             update();
@@ -59,106 +51,119 @@ public class Game {
     public void update() {
 
         System.out.println("Comandos: ");
-        System.out.println("[1] para ver tu vida actual y ver tus botequines actuales.");
+        System.out.println("[1] para ver tu vida actual.");
         System.out.println("[2] para curarte.");
-        System.out.println("[3] para seleccionar un arma.");
+        System.out.println("[3] para ver tus armas y seleccionar una.");
         System.out.println("[4] para explorar");
-        System.out.println("[5] para ver tu inventario");
+        System.out.println("[5] para minar");
 
-        if(potenciadorActivado()) {
-            System.out.println("El potenciador activado!");
-        }
 
-        int menuPrincipal = scanner.getInt();
+        int comando = scanner.getInt();
 
-        if (menuPrincipal == 1) {
+        if(comando == 1){
 
             jugador.vidaActual();
-            botequin.numeroDeBotequines();
-            return;
 
         }
 
-        if (menuPrincipal == 2) {
+        if(comando == 2) {
 
+            medicina.curar(jugador);
 
-            if (jugador.vida == 100) {
+        }
 
-                System.out.println("Tu vida actual es 100 a si que no puedes curarte");
+        if(comando == 3){
 
-            } else {
+            System.out.println("Estas en el menu de armas aqui podras ver los atributos del arma y seleccionarla para la batalla escribe:");
+            System.out.println("[1] para la espada.");
+            System.out.println("[2] para el arco.");
+            System.out.println("[3] para el hacha.");
+            System.out.println("[4] para reparar un arma");
+            int vistaArma = scanner.getInt();
 
-                botequin.curar(jugador);
+            if(vistaArma == 1){
 
+                System.out.println("Tipo de arma: " + espada.tipoDeArma);
+                System.out.println("Daño: " + espada.daño);
+                System.out.println("Durabilidad: " + espada.durabilidad);
+                System.out.println("¿Quieres seleccionar la espada?");
+                System.out.println("[Escribe si o no]");
+                String  seleccionDeArma = scanner.getString();
+
+                if(seleccionDeArma.equals("si")){
+
+                    jugador.armaActual = espada;
+                    System.out.println("El arma actual es la espada");
+
+                }else{
+                    return;
+                }
             }
 
-            return;
+            if(vistaArma == 2){
 
-        }
+                System.out.println("Tipo de arma: " + arco.tipoDeArma);
+                System.out.println("Daño: " + arco.daño);
+                System.out.println("Durabilidad: " + arco.durabilidad);
+                System.out.println("¿Quieres seleccionar el arco?");
+                System.out.println("[Escribe si o no]");
+                String  seleccionDeArma = scanner.getString();
 
-        if (menuPrincipal == 3) {
+                if(seleccionDeArma.equals("si")){
 
-            System.out.println("Selecciona el arma que vas a usar [1 para la ametralladora, 2 para la escopeta, 3 para el cañon]");
-            int arma = scanner.getInt();
+                    jugador.armaActual = arco;
+                    System.out.println("El arma actual es el arco");
 
-            if (arma == 1) {
+                }else{
 
-                jugador.armaActual = ametralladora;
-                System.out.println("El arma actual es la ametralladora");
-                return;
+                    return;
+                }
             }
 
-            if (arma == 2) {
+            if(vistaArma == 3){
 
-                jugador.armaActual = escopeta;
-                System.out.println("El arma actual es la escopeta");
-                return;
+                System.out.println("Tipo de arma: " + hacha.tipoDeArma);
+                System.out.println("Daño: " + hacha.daño);
+                System.out.println("Durabilidad: " + hacha.durabilidad);
+                System.out.println("¿Quieres seleccionar el hacha?");
+                System.out.println("[Escribe si o no]");
+                String  seleccionDeArma = scanner.getString();
+
+                if(seleccionDeArma.equals("si")){
+
+                    jugador.armaActual = hacha;
+                    System.out.println("El arma actual es el hacha");
+
+                }else{
+
+                    return;
+                }
             }
 
-            if (arma == 3) {
+            if(vistaArma == 4){
 
-                jugador.armaActual = cañon;
-                System.out.println("El arma actual es el cañon");
-                return;
-            }
+                System.out.println("Para reparar un arma debes tener un tipo de objeto esta es la lista: ");
+                System.out.println("[1] para reparar la espada [para reparar la espada necesitaras hierro]");
+                int repararArma = scanner.getInt();
+
+                if(repararArma == 1){
+
+                    hierro.usarHierro(espada);
 
 
-        }
-
-        if (menuPrincipal == 4) {
-
-            System.out.println("¿Estas seguro de que quieres explorar? [[Escribe true para responder si] o [escribe false para responder no]]");
-            boolean explorarPregunta = scanner.getBoolean();
-            if (explorarPregunta == true) {
-
-                lugar.explorar(botequin, ametralladora, escopeta, cañon, potenciadorDeDañoNivel1);
-
+                }
             }
         }
-        if(menuPrincipal == 5){
+        if(comando == 4){
 
-            inventario.mostrarInventario(botequin, ametralladora, escopeta, cañon);
-        }
-        if(menuPrincipal == 6){
-
-            potenciadorDeDañoNivel1.d(ametralladora, escopeta, cañon);
+            lugar.explorar(medicina);
 
         }
-        if(menuPrincipal == 7){
 
-            potenciadorDeDañoNivel1.usarPotenciador(this, ametralladora, escopeta, cañon);
+        if(comando == 5){
+
+            lugar.minar(hierro);
 
         }
     }
-
-    public boolean potenciadorActivado() {
-
-        return potenciadorHasta >= System.currentTimeMillis();
-
-    }
-
-
 }
-
-
-

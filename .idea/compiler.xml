@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="AdventureTime" />
-        <module name="adventuretime-master" />
         <module name="adventuretime" />
+        <module name="adventuretime-master" />
       </profile>
     </annotationProcessing>
   </component>

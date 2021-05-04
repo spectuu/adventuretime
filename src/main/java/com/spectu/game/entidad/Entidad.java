@@ -1,21 +1,21 @@
-package com.spectu.game.entidades;
-
-import com.spectu.game.armas.Arma;
+package com.spectu.game.entidad;
 
 public class Entidad {
 
-    String nombre;
-    int vida;
+    public String nombre;
+    public int vida;
 
     public Entidad(String nombre, int vida){
-
-        this.vida = vida;
+        
         this.nombre = nombre;
+        this.vida = vida;
 
     }
 
     public void setNombre(String nombre) {
+
         this.nombre = nombre;
+
     }
 
     public String getNombre() {
@@ -24,4 +24,5 @@ public class Entidad {
 
     }
 
+    
 }
