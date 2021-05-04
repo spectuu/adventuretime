@@ -25,9 +25,9 @@ public class Medicina extends Objeto{
             jugador.vida = jugador.vida+15;
             System.out.println("Vida actual: " + jugador.vida);
 
-            if(jugador.vida > 100+50 ){
+            if(jugador.vida > 100){
 
-                jugador.vida = 100;
+                jugador.vida = 100-10;
 
             }
 

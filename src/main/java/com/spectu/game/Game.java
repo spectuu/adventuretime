@@ -73,7 +73,7 @@ public class Game {
         }
         if(comando == 4){
 
-            lugar.explorar(medicina, jugador);
+            lugar.explorar(medicina, jugador, hierro);
 
         }
 
