@@ -5,16 +5,10 @@ public class Entidad {
     public String nombre;
     public int vida;
 
-    public Entidad(String nombre, int vida){
-        
+    public Entidad(String nombre, int vida) {
+
         this.nombre = nombre;
         this.vida = vida;
-
-    }
-
-    public void setNombre(String nombre) {
-
-        this.nombre = nombre;
 
     }
 
@@ -24,5 +18,11 @@ public class Entidad {
 
     }
 
-    
+    public void setNombre(String nombre) {
+
+        this.nombre = nombre;
+
+    }
+
+
 }

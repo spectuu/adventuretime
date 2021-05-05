@@ -2,7 +2,7 @@ package com.spectu.game.objeto;
 
 import com.spectu.game.arma.Espada;
 
-public class Hierro extends Objeto{
+public class Hierro extends Objeto {
 
 
     public Hierro() {
@@ -11,27 +11,26 @@ public class Hierro extends Objeto{
 
     }
 
-    public void usarHierro(Espada espada){
+    public void usarHierro(Espada espada) {
 
-        if(cantidad > 0){
+        if (cantidad > 0) {
 
-            if(espada.durabilidad >= 100){
+            if (espada.durabilidad >= 100) {
 
-                espada.durabilidad = espada.durabilidad-10;
+                espada.durabilidad = espada.durabilidad - 10;
 
+            }else{
+
+                espada.durabilidad = espada.durabilidad + 10;
+                System.out.println("La espada se a reparado");
+                System.out.println("Durabilidad espada: " + espada.durabilidad);
+                cantidad = cantidad - 1;
             }
 
-            espada.durabilidad = espada.durabilidad+10;
-            System.out.println("La espada se a reparado");
-            System.out.println("Durabilidad espada: " + espada.durabilidad);
-            cantidad = cantidad-1;
-
-
-        }else if(cantidad == 0){
+        } else if (cantidad == 0) {
 
             System.out.println("No tienes hierro para reparar la espada, mina para conseguirlo");
         }
-
 
 
     }

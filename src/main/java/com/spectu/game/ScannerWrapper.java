@@ -18,13 +18,13 @@ public class ScannerWrapper {
 
     }
 
-    public String getString(){
+    public String getString() {
 
         return scanner.nextLine();
 
     }
 
-    public boolean getBoolean(){
+    public boolean getBoolean() {
 
         boolean scannerBoolean = scanner.nextBoolean();
         getString();

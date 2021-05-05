@@ -1,8 +1,5 @@
 package com.spectu.game;
 
-import com.spectu.game.arma.Arco;
-import com.spectu.game.arma.Espada;
-import com.spectu.game.arma.Hacha;
 import com.spectu.game.entidad.Jugador;
 import com.spectu.game.mundo.Lugar;
 import com.spectu.game.objeto.Hierro;
@@ -10,23 +7,22 @@ import com.spectu.game.objeto.Medicina;
 
 public class Game {
 
-    private ScannerWrapper scanner;
-
     public Jugador jugador;
     public Medicina medicina;
     public String nombre;
     public Lugar lugar;
     public Hierro hierro;
+    private ScannerWrapper scanner;
 
 
     public Game() {
-        
+
         this.scanner = new ScannerWrapper();
         this.jugador = new Jugador(nombre);
         this.medicina = new Medicina();
         this.lugar = new Lugar();
         this.hierro = new Hierro();
-        
+
     }
 
     public void start() {
@@ -35,7 +31,7 @@ public class Game {
         nombre = scanner.getString();
         jugador.setNombre(nombre);
 
-        System.out.println("Bienvenido " +  "a RPGQuest " + jugador.getNombre() + " espero y te diviertas! \n");
+        System.out.println("Bienvenido " + "a RPGQuest " + jugador.getNombre() + " espero y te diviertas! \n");
 
         while (true)
             update();
@@ -54,30 +50,30 @@ public class Game {
 
         int comando = scanner.getInt();
 
-        if(comando == 1){
+        if (comando == 1) {
 
             jugador.vidaActual();
 
         }
 
-        if(comando == 2) {
+        if (comando == 2) {
 
             medicina.curar(jugador);
 
         }
 
-        if(comando == 3){
+        if (comando == 3) {
 
-            jugador.seleccionarArma();
+            jugador.seleccionarArma(hierro);
 
         }
-        if(comando == 4){
+        if (comando == 4) {
 
             lugar.explorar(medicina, jugador, hierro);
 
         }
 
-        if(comando == 5){
+        if (comando == 5) {
 
             lugar.minar(hierro);
 

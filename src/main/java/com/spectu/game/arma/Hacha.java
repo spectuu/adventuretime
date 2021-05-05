@@ -1,6 +1,6 @@
 package com.spectu.game.arma;
 
-public class Hacha extends Arma{
+public class Hacha extends Arma {
 
     public Hacha() {
 
@@ -8,12 +8,12 @@ public class Hacha extends Arma{
 
     }
 
-    public void atacar(){
+    public void atacar() {
 
 
-        durabilidad = durabilidad-2;
+        durabilidad = durabilidad - 2;
 
     }
 
-   
+
 }

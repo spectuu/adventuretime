@@ -1,23 +1,23 @@
 package com.spectu.game.arma;
 
-public class Arco extends Arma{
+public class Arco extends Arma {
 
-   int flechaActual = 1;
-   int gastoFlecha = 1;
-   int cargaFlecha = 3;
+    int flechaActual = 1;
+    int gastoFlecha = 1;
+    int cargaFlecha = 3;
 
     public Arco() {
         super(20, 100, "Distancia");
 
     }
 
-    public void atacar(){
+    public void atacar() {
 
-        if(flechaActual >= gastoFlecha) {
+        if (flechaActual >= gastoFlecha) {
 
-            flechaActual = flechaActual-gastoFlecha;
-            durabilidad = durabilidad-2;
-        }else {
+            flechaActual = flechaActual - gastoFlecha;
+            durabilidad = durabilidad - 2;
+        } else {
 
             System.out.println("Antes carga la flecha");
 
