@@ -1,13 +1,10 @@
 package com.spectu.game.entidad;
 
 import com.spectu.game.ScannerWrapper;
-import com.spectu.game.arma.Arco;
-import com.spectu.game.arma.Arma;
-import com.spectu.game.arma.Espada;
-import com.spectu.game.arma.Hacha;
-import com.spectu.game.mundo.Lugar;
+import com.spectu.game.arma.*;
 import com.spectu.game.objeto.Hierro;
 import com.spectu.game.objeto.Medicina;
+import com.spectu.game.objeto.Plata;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -16,8 +13,9 @@ public class Jugador extends Entidad {
     public Arma armaActual;
     public Enemigo enemigo;
     public Espada espada = new Espada();
-    public Arco arco = new Arco();
+    public EspadaLarga espadaLarga = new EspadaLarga();
     public Hacha hacha = new Hacha();
+    public Mazo mazo = new Mazo();
     private ScannerWrapper scanner = new ScannerWrapper();
 
 
@@ -32,13 +30,14 @@ public class Jugador extends Entidad {
 
     }
 
-    public void seleccionarArma(Hierro hierro) {
+    public void seleccionarArma(Hierro hierro, Plata plata) {
 
         System.out.println("Selecciona un arma usando: ");
         System.out.println("[1] para la espada.");
-        System.out.println("[2] para el arco.");
+        System.out.println("[2] para la espada larga.");
         System.out.println("[3] para el hacha.");
-        System.out.println("[4] para reparar un arma");
+        System.out.println("[4] para el mazo");
+        System.out.println("[5] para reparar un arma");
         int vistaArma = scanner.getInt();
 
         if (vistaArma == 1) {
@@ -64,17 +63,18 @@ public class Jugador extends Entidad {
         if (vistaArma == 2) {
 
             System.out.println("ATRIBUTOS:");
-            System.out.println("Tipo de arma: " + arco.tipoDeArma);
-            System.out.println("Daño: " + arco.daño);
-            System.out.println("Durabilidad: " + arco.durabilidad);
-            System.out.println("¿Quieres seleccionar el arco?");
+            System.out.println("Tipo de arma: " + espadaLarga.tipoDeArma);
+            System.out.println("Daño: " + espadaLarga.daño);
+            System.out.println("Durabilidad: " + espadaLarga.durabilidad);
+            System.out.println("¿Quieres seleccionar la espada larga?");
             System.out.println("[Escribe si o no]");
             String seleccionDeArma = scanner.getString();
 
             if (seleccionDeArma.equals("si")) {
 
-                armaActual = arco;
+                armaActual = espadaLarga;
                 System.out.println("El arma actual es el arco");
+
 
             } else {
 
@@ -102,12 +102,32 @@ public class Jugador extends Entidad {
                 return;
             }
         }
-        if (vistaArma == 4) {
+
+        if(vistaArma == 4){
+
+            System.out.println("ATRIBUTOS:");
+            System.out.println("Tipo de arma: " + mazo.tipoDeArma);
+            System.out.println("Daño: " + mazo.daño);
+            System.out.println("Durabilidad: " + mazo.durabilidad);
+            System.out.println("¿Quieres seleccionar el mazo?");
+            System.out.println("[Escribe si o no]");
+            String seleccionDeArma = scanner.getString();
+
+            if (seleccionDeArma.equals("si")) {
+
+                armaActual = mazo;
+                System.out.println("El arma actual es el mazo");
+
+            }
+
+        }
+        if (vistaArma == 5) {
 
             System.out.println("Aqui podras reparar tus armas para eso necesitaras un objeto en especifico del arma");
             System.out.println("[Espada] necesitas hierro");
             System.out.println("Usa: ");
             System.out.println("[1] para reparar la espada");
+            System.out.println("[2] para reparar el hacha");
             int repararArma = scanner.getInt();
 
             if (repararArma == 1) {
@@ -116,35 +136,49 @@ public class Jugador extends Entidad {
 
             }
 
+            if(repararArma == 2){
+
+                plata.usarPlata(hacha);
+
+            }
 
         }
     }
 
-    public void pelear(Hierro hierro, Medicina vendas, Jugador jugador) {
+    public void pelear(Hierro hierro, Medicina vendas, Jugador jugador, Plata plata) {
 
         int probabilidadEnemigo = ThreadLocalRandom.current().nextInt(1, (1 + 50));
 
-        SoldadoDeLaRuina soldadoDeLaRuina = new SoldadoDeLaRuina();
-        Fantasma fantasma = new Fantasma();
-        CaballeroSombrio caballeroSombrio = new CaballeroSombrio();
 
-            if(probabilidadEnemigo < 50){
 
+
+
+            if(probabilidadEnemigo < 50 && probabilidadEnemigo > 40){
+
+                SoldadoDeLaRuina soldadoDeLaRuina = new SoldadoDeLaRuina();
             enemigo = soldadoDeLaRuina;
 
             }
 
-            if(probabilidadEnemigo < 40){
-
+            if(probabilidadEnemigo < 40 && probabilidadEnemigo > 30){
+                Fantasma fantasma = new Fantasma();
                 enemigo = fantasma;
 
             }
 
-            if(probabilidadEnemigo < 20){
+            if(probabilidadEnemigo < 20 && probabilidadEnemigo > 1){
 
+                CaballeroSombrio caballeroSombrio = new CaballeroSombrio();
                 enemigo = caballeroSombrio;
 
             }
+
+        if(probabilidadEnemigo < 5 && probabilidadEnemigo > 1){
+
+            Viego viego = new Viego();
+            enemigo = viego;
+
+        }
 
             System.out.println("¡ALERTA DE ENEMIGO!");
             System.out.println(enemigo.nombre + ":");
@@ -157,21 +191,21 @@ public class Jugador extends Entidad {
                 System.out.println("[1] para atacar");
                 System.out.println("[2] para curarte");
                 System.out.println("[3] cambiar de arma");
+                System.out.println("[4] para huir");
                 int ataque = scanner.getInt();
 
                 if (ataque == 1) {
 
-                    enemigo.vida = enemigo.vida - armaActual.daño;
-                    if(enemigo.vida < 0){
+                    jugador.vida = jugador.vida-jugador.enemigo.daño;
+                    armaActual.durabilidad = armaActual.durabilidad-2;
+                    if(vida < 0)
+                        vida = 0;
+                    System.out.println("Vida jugador:" + vida);
+                    jugador.enemigo.vida = jugador.enemigo.vida-armaActual.daño;
+                    if(enemigo.vida < 0)
                         enemigo.vida = 0;
-                    }
                     System.out.println("Vida enemigo:" + enemigo.vida);
 
-                    vida = vida - enemigo.daño;
-                    if(vida < 0){
-                        vida = 0;
-                    }
-                    System.out.println("Vida jugador:" + vida);
 
                 }
 
@@ -185,12 +219,17 @@ public class Jugador extends Entidad {
 
                     System.out.println("Seleccion el arma con la que vas a atacar:");
 
-                    seleccionarArma(hierro);
+                    seleccionarArma(hierro, plata);
 
                 }
 
-                if (enemigo.vida <= 0) {
+                if(ataque == 4){
 
+                    break;
+                }
+
+                if (enemigo.vida <= 0) {
+                    enemigo.vida = 0;
 
                     int botin = ThreadLocalRandom.current().nextInt(1 + (100 + 1));
                     int botin2 = ThreadLocalRandom.current().nextInt(1 + (3 + 1));
@@ -201,8 +240,8 @@ public class Jugador extends Entidad {
                     if (botin > 5) {
 
                         System.out.println("BOTIN:");
-                        System.out.println("vendas obtenidas [" + vendas.cantidad + "]");
-                        System.out.println("Hierro obtenido [" + hierro.cantidad + "]");
+                        System.out.println("vendas obtenidas [" + botin2 + "]");
+                        System.out.println("Hierro obtenido [" + botin3 + "]");
                         vendas.cantidad = vendas.cantidad + botin2;
                         hierro.cantidad = hierro.cantidad + botin3;
 
@@ -218,6 +257,7 @@ public class Jugador extends Entidad {
 
                 if (vida <= 0) {
 
+
                     System.out.println("Has muerto ahora dedice: ");
                     System.out.println("[Escribe [1] para vivir]");
                     System.out.println("Escribe [2] para morir");
@@ -231,14 +271,16 @@ public class Jugador extends Entidad {
                         int perdida = ThreadLocalRandom.current().nextInt(1, (2 + 3));
 
                         hierro.cantidad = hierro.cantidad - perdida;
+                        if(hierro.cantidad < 0)
+                            hierro.cantidad = 0;
                         vendas.cantidad = vendas.cantidad - perdida;
+                        if(plata.cantidad < 0)
+                            plata.cantidad = 0;
                         vida = vida+50;
                         break;
-
                     } else if (vivirOMorir == 2) {
 
                         System.exit(-1);
-
                     }
                 }
             }

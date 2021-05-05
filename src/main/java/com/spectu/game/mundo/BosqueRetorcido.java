@@ -6,14 +6,15 @@ import com.spectu.game.entidad.Jugador;
 import com.spectu.game.entidad.SoldadoDeLaRuina;
 import com.spectu.game.objeto.Hierro;
 import com.spectu.game.objeto.Medicina;
+import com.spectu.game.objeto.Plata;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Lugar {
+public class BosqueRetorcido {
 
     private ScannerWrapper scanner;
 
-    public void explorar(Medicina vendas, Jugador jugador, Hierro hierro) {
+    public void explorar(Medicina vendas, Jugador jugador, Hierro hierro, Plata plata) {
 
         if (jugador.armaActual == null) {
 
@@ -40,18 +41,11 @@ public class Lugar {
 
             if(probabilidadEnemigo < 50 && probabilidadEnemigo > 1){
 
-                jugador.pelear(hierro, vendas, jugador);
+                jugador.pelear(hierro, vendas, jugador, plata);
 
             }
 
         }
     }
-    public void minar(Hierro hierro) {
 
-        int hierroObtenido = ThreadLocalRandom.current().nextInt(1, 2 + 1);
-
-        hierro.cantidad = hierro.cantidad + hierroObtenido;
-
-        System.out.println("Has obtenido [" + hierroObtenido + "] de hierro.");
-    }
 }

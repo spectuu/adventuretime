@@ -8,4 +8,6 @@ public class Enemigo extends Entidad{
         super(nombre, vida);
         this.daño = daño;
     }
-}
+
+    }
+

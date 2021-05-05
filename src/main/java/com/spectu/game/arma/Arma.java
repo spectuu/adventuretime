@@ -1,5 +1,7 @@
 package com.spectu.game.arma;
 
+import com.spectu.game.entidad.Jugador;
+
 public class Arma {
 
     public int daño;

@@ -1,5 +1,7 @@
 package com.spectu.game.arma;
 
+
+
 public class Espada extends Arma {
 
 
@@ -9,9 +11,5 @@ public class Espada extends Arma {
 
     }
 
-    public void atacar() {
 
-        durabilidad = durabilidad - 2;
-
-    }
 }
