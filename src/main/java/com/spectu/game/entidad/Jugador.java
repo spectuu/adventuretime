@@ -122,16 +122,34 @@ public class Jugador extends Entidad {
 
     public void pelear(Hierro hierro, Medicina vendas, Jugador jugador) {
 
-        int probabilidadEnemigo = ThreadLocalRandom.current().nextInt(1, (1 + 100));
+        int probabilidadEnemigo = ThreadLocalRandom.current().nextInt(1, (1 + 50));
 
-        if (probabilidadEnemigo >= 30 && probabilidadEnemigo <= 40) {
+        SoldadoDeLaRuina soldadoDeLaRuina = new SoldadoDeLaRuina();
+        Fantasma fantasma = new Fantasma();
+        CaballeroSombrio caballeroSombrio = new CaballeroSombrio();
 
-            SoldadoDeLaRuina soldadoDeLaRuina = new SoldadoDeLaRuina();
-            jugador.enemigo = soldadoDeLaRuina;
+            if(probabilidadEnemigo < 50){
+
+            enemigo = soldadoDeLaRuina;
+
+            }
+
+            if(probabilidadEnemigo < 40){
+
+                enemigo = fantasma;
+
+            }
+
+            if(probabilidadEnemigo < 20){
+
+                enemigo = caballeroSombrio;
+
+            }
+
             System.out.println("¡ALERTA DE ENEMIGO!");
-            System.out.println("SOLDADO DE LA RUINA: ");
+            System.out.println(enemigo.nombre + ":");
             System.out.println("vida: " + enemigo.vida);
-            System.out.println("daño: " + soldadoDeLaRuina.daño);
+            System.out.println("daño: " + enemigo.daño);
 
             while (true) {
 
@@ -143,10 +161,16 @@ public class Jugador extends Entidad {
 
                 if (ataque == 1) {
 
-                    soldadoDeLaRuina.vida = soldadoDeLaRuina.vida - armaActual.daño;
-                    System.out.println("Vida enemigo:" + soldadoDeLaRuina.vida);
+                    enemigo.vida = enemigo.vida - armaActual.daño;
+                    if(enemigo.vida < 0){
+                        enemigo.vida = 0;
+                    }
+                    System.out.println("Vida enemigo:" + enemigo.vida);
 
-                    vida = vida - soldadoDeLaRuina.daño;
+                    vida = vida - enemigo.daño;
+                    if(vida < 0){
+                        vida = 0;
+                    }
                     System.out.println("Vida jugador:" + vida);
 
                 }
@@ -165,7 +189,8 @@ public class Jugador extends Entidad {
 
                 }
 
-                if (soldadoDeLaRuina.vida < 0) {
+                if (enemigo.vida <= 0) {
+
 
                     int botin = ThreadLocalRandom.current().nextInt(1 + (100 + 1));
                     int botin2 = ThreadLocalRandom.current().nextInt(1 + (3 + 1));
@@ -176,10 +201,11 @@ public class Jugador extends Entidad {
                     if (botin > 5) {
 
                         System.out.println("BOTIN:");
-                        vendas.cantidad = vendas.cantidad + botin2;
-                        hierro.cantidad = hierro.cantidad + botin3;
                         System.out.println("vendas obtenidas [" + vendas.cantidad + "]");
                         System.out.println("Hierro obtenido [" + hierro.cantidad + "]");
+                        vendas.cantidad = vendas.cantidad + botin2;
+                        hierro.cantidad = hierro.cantidad + botin3;
+
 
                     } else {
 
@@ -188,7 +214,9 @@ public class Jugador extends Entidad {
 
                     break;
 
-                } else if (vida <= 0) {
+                }
+
+                if (vida <= 0) {
 
                     System.out.println("Has muerto ahora dedice: ");
                     System.out.println("[Escribe [1] para vivir]");
@@ -214,206 +242,6 @@ public class Jugador extends Entidad {
                     }
                 }
             }
-        }
-    }
-
-    public void pelear2(Medicina vendas, Hierro hierro, Jugador jugador){
-
-        int probabilidadFantasma = ThreadLocalRandom.current().nextInt(1, (100+1));
-
-        if(probabilidadFantasma >= 10 && probabilidadFantasma <= 35){
-
-        }
-
-        Fantasma fantasma = new Fantasma();
-        jugador.enemigo = fantasma;
-        System.out.println("¡ALERTA DE ENEMIGO!");
-        System.out.println("FANTASMA:");
-        System.out.println("vida: " + enemigo.vida);
-        System.out.println("daño: " + enemigo.daño);
-
-        while (true) {
-
-            System.out.println("Comandos para la pelea:");
-            System.out.println("[1] para atacar");
-            System.out.println("[2] para curarte");
-            System.out.println("[3] cambiar de arma");
-            int ataque = scanner.getInt();
-
-            if (ataque == 1) {
-
-                enemigo.vida = enemigo.vida - armaActual.daño;
-                System.out.println("Vida enemigo:" + enemigo.vida);
-
-                vida = vida - enemigo.daño;
-                System.out.println("Vida jugador:" + vida);
-
-            }
-
-            if (ataque == 2) {
-
-                vendas.curar(jugador);
-
-            }
-
-            if (ataque == 3) {
-
-                System.out.println("Seleccion el arma con la que vas a atacar:");
-
-                seleccionarArma(hierro);
-
-            }
-
-            if (fantasma.vida < 0) {
-
-                int botin = ThreadLocalRandom.current().nextInt(1 + (100 + 1));
-                int botin2 = ThreadLocalRandom.current().nextInt(1 + (3 + 1));
-                int botin3 = ThreadLocalRandom.current().nextInt(1 + (2 + 1));
-
-                System.out.println("Felicidades has derrotado al enemigo!");
-
-                if (botin > 5) {
-
-                    System.out.println("BOTIN:");
-                    vendas.cantidad = vendas.cantidad + botin2;
-                    hierro.cantidad = hierro.cantidad + botin3;
-                    System.out.println("vendas obtenidas [" + vendas.cantidad + "]");
-                    System.out.println("Hierro obtenido [" + hierro.cantidad + "]");
-
-
-                } else {
-
-                    System.out.println("Parace que el enemigo no tenia nada de valor suerte para la proxima :b");
-                }
-
-                break;
-
-            } else if (vida <= 0) {
-
-                System.out.println("Has muerto ahora dedice: ");
-                System.out.println("[Escribe [1] para vivir]");
-                System.out.println("Escribe [2] para morir");
-                System.out.println("[si elijes vivir perderas objetos]");
-                System.out.println("[si elijes morir acabara el juego]");
-
-                int vivirOMorir = scanner.getInt();
-
-                if (vivirOMorir == 1) {
-
-                    int perdida = ThreadLocalRandom.current().nextInt(1, (2 + 3));
-
-                    hierro.cantidad = hierro.cantidad - perdida;
-                    vendas.cantidad = vendas.cantidad - perdida;
-                    vida = vida+50;
-                    break;
-
-                } else if (vivirOMorir == 2) {
-
-                    System.exit(-1);
-
-                }
-            }
-        }
-    }
-
-    public void pelear3(Jugador jugador, Hierro hierro, Medicina vendas){
-
-        int probabilidadEnemigo = ThreadLocalRandom.current().nextInt(1, (100 +1));
-
-        if(probabilidadEnemigo >= 8 && probabilidadEnemigo <= 10){
-
-
-        CaballeroSombrio caballeroSombrio = new CaballeroSombrio();
-        jugador.enemigo = caballeroSombrio;
-        System.out.println("¡ALERTA DE ENEMIGO!");
-        System.out.println("CABALLERO SOMBRIO:");
-        System.out.println("vida: " + enemigo.vida);
-        System.out.println("daño: " + enemigo.daño);
-
-        while (true) {
-
-            System.out.println("Comandos para la pelea:");
-            System.out.println("[1] para atacar");
-            System.out.println("[2] para curarte");
-            System.out.println("[3] cambiar de arma");
-            int ataque = scanner.getInt();
-
-            if (ataque == 1) {
-
-                enemigo.vida = enemigo.vida - armaActual.daño;
-                System.out.println("Vida enemigo:" + enemigo.vida);
-
-                vida = vida - enemigo.daño;
-                System.out.println("Vida jugador:" + vida);
-
-            }
-
-            if (ataque == 2) {
-
-                vendas.curar(jugador);
-
-            }
-
-            if (ataque == 3) {
-
-                System.out.println("Seleccion el arma con la que vas a atacar:");
-
-                seleccionarArma(hierro);
-
-            }
-
-            if (enemigo.vida < 0) {
-
-                int botin = ThreadLocalRandom.current().nextInt(1 + (100 + 1));
-                int botin2 = ThreadLocalRandom.current().nextInt(1 + (3 + 1));
-                int botin3 = ThreadLocalRandom.current().nextInt(1 + (2 + 1));
-
-                System.out.println("Felicidades has derrotado al enemigo!");
-                if (botin > 5) {
-
-                    System.out.println("BOTIN:");
-                    vendas.cantidad = vendas.cantidad + botin2;
-                    hierro.cantidad = hierro.cantidad + botin3;
-                    System.out.println("vendas obtenidas [" + vendas.cantidad + "]");
-                    System.out.println("Hierro obtenido [" + hierro.cantidad + "]");
-
-
-                } else {
-
-                    System.out.println("Parace que el enemigo no tenia nada de valor suerte para la proxima :b");
-                }
-
-                break;
-
-            } else if (vida <= 0) {
-
-                System.out.println("Has muerto ahora dedice: ");
-                System.out.println("[Escribe [1] para vivir]");
-                System.out.println("Escribe [2] para morir");
-                System.out.println("[si elijes vivir perderas objetos]");
-                System.out.println("[si elijes morir acabara el juego]");
-
-                int vivirOMorir = scanner.getInt();
-
-                if (vivirOMorir == 1) {
-
-                    int perdida = ThreadLocalRandom.current().nextInt(1, (2 + 3));
-
-                    hierro.cantidad = hierro.cantidad - perdida;
-                    vendas.cantidad = vendas.cantidad - perdida;
-                    vida = vida+50;
-                    break;
-
-                } else if (vivirOMorir == 2) {
-
-                    System.exit(-1);
-
-                }
-                }
-            }
-        }
-
-    }
-
+      }
 }
 

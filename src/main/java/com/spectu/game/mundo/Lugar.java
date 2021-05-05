@@ -38,20 +38,9 @@ public class Lugar {
 
             }
 
-            if(probabilidadEnemigo > 30){
+            if(probabilidadEnemigo < 50 && probabilidadEnemigo > 1){
 
                 jugador.pelear(hierro, vendas, jugador);
-
-            }
-
-            if(probabilidadEnemigo < 10){
-
-                jugador.pelear2(vendas, hierro, jugador);
-            }
-
-            if(probabilidadEnemigo < 8){
-
-                jugador.pelear3(jugador, hierro, vendas);
 
             }
 
