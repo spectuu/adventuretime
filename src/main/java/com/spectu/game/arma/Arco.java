@@ -4,7 +4,7 @@ public class Arco extends Arma {
 
     int flechaActual = 1;
     int gastoFlecha = 1;
-    int cargaFlecha = 3;
+    int cargaFlecha = 2;
 
     public Arco() {
         super(20, 100, "Distancia");
