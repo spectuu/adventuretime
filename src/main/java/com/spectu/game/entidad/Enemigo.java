@@ -1,6 +1,6 @@
 package com.spectu.game.entidad;
 
-public class Enemigo extends Entidad{
+public class Enemigo extends Entidad {
 
     public int daño;
 
@@ -9,5 +9,5 @@ public class Enemigo extends Entidad{
         this.daño = daño;
     }
 
-    }
+}
 

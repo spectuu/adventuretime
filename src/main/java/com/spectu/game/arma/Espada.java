@@ -1,7 +1,6 @@
 package com.spectu.game.arma;
 
 
-
 public class Espada extends Arma {
 
 

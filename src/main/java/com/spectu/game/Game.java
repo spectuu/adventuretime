@@ -3,9 +3,7 @@ package com.spectu.game;
 import com.spectu.game.entidad.Jugador;
 import com.spectu.game.mundo.BosqueRetorcido;
 import com.spectu.game.mundo.MinasOlvidadas;
-import com.spectu.game.objeto.Hierro;
-import com.spectu.game.objeto.Medicina;
-import com.spectu.game.objeto.Plata;
+import com.spectu.game.objeto.*;
 
 public class Game {
 
@@ -16,6 +14,8 @@ public class Game {
     public MinasOlvidadas minasOlvidadas;
     public Hierro hierro;
     public Plata plata;
+    public Acero acero;
+    public Alma alma;
     private ScannerWrapper scanner;
 
 
@@ -28,6 +28,8 @@ public class Game {
         this.minasOlvidadas = new MinasOlvidadas();
         this.hierro = new Hierro();
         this.plata = new Plata();
+        this.acero = new Acero();
+        this.alma = new Alma();
 
     }
 
@@ -72,12 +74,12 @@ public class Game {
 
         if (comando == 3) {
 
-            jugador.seleccionarArma(hierro, plata);
+            jugador.seleccionarArma(hierro, plata, acero, alma);
 
         }
         if (comando == 4) {
 
-            bosqueRetorcido.explorar(medicina, jugador, hierro, plata);
+            bosqueRetorcido.explorar(medicina, jugador, hierro, plata, alma, acero);
 
         }
 
@@ -86,8 +88,8 @@ public class Game {
             minasOlvidadas.minar(hierro, plata);
 
         }
-        
-        if(comando == 6){
+
+        if (comando == 6) {
 
             System.out.println("Escribe tu nuevo nombre:");
             String nombre = scanner.getString();
@@ -95,7 +97,7 @@ public class Game {
             System.out.println("Tu nuevo nombre es " + nombre);
         }
 
-        if(comando == 0){
+        if (comando == 0) {
 
             System.exit(-1);
         }

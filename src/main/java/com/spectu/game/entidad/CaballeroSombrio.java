@@ -1,6 +1,6 @@
 package com.spectu.game.entidad;
 
-public class CaballeroSombrio extends Enemigo{
+public class CaballeroSombrio extends Enemigo {
 
     public CaballeroSombrio() {
 
