@@ -36,11 +36,11 @@ public class Objeto {
 
             System.out.println("No tienes suficiente material para reparar el arma seleccionada.");
         }
-
-
-
     }
 
+    public int getCantidad(){
 
+        return cantidad;
+    }
 
 }

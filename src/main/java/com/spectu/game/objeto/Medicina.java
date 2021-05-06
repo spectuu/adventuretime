@@ -9,8 +9,6 @@ public class Medicina extends Objeto {
 
         super("Vendas", "Curar un porcentaje de vida", 0);
 
-        cantidad = 1000;
-
     }
 
     public void curar(Jugador jugador) {

@@ -72,7 +72,7 @@ public class Jugador extends Entidad {
             if (seleccionDeArma.equals("si")) {
 
                 armaActual = espadaLarga;
-                System.out.println("El arma actual es el arco");
+                System.out.println("El arma actual es la espada larga");
 
 
             } else {
@@ -300,6 +300,35 @@ public class Jugador extends Entidad {
 
                     System.exit(-1);
                 }
+            }
+        }
+    }
+
+    public void forjar(Hierro hierro, Carbon carbon, Acero acero) {
+
+        System.out.println("¿Que quieres forjar?");
+        System.out.println("[1] para forjar acero");
+        int forjarOpcion = scanner.getInt();
+
+        if(forjarOpcion == 1){
+
+            if(hierro.cantidad > 0 && carbon.cantidad > 0){
+
+                hierro.cantidad = hierro.cantidad-2;
+                carbon.cantidad = carbon.cantidad-2;
+
+
+                acero.cantidad = acero.cantidad+1;
+                System.out.println("Acero cantidad: " + acero.cantidad);
+
+            }else if(hierro.cantidad <= 0){
+
+                System.out.println("No tienes hierro suficiente.");
+
+            }else if(carbon.cantidad <= 0){
+
+                System.out.println("No tienes carbon suficiente.");
+
             }
         }
     }

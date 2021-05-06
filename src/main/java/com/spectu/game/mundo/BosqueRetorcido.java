@@ -41,10 +41,7 @@ public class BosqueRetorcido {
             if (probabilidadEnemigo < 50 && probabilidadEnemigo > 1) {
 
                 jugador.pelear(hierro, vendas, jugador, plata, acero, alma);
-
             }
-
         }
     }
-
 }

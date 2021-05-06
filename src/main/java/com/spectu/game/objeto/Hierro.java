@@ -7,7 +7,7 @@ public class Hierro extends Objeto {
 
     public Hierro() {
 
-        super("Hierro", "Reparar la espada", 2);
+        super("Hierro", "Reparar la espada", 0);
 
     }
 

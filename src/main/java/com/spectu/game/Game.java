@@ -16,6 +16,8 @@ public class Game {
     public Plata plata;
     public Acero acero;
     public Alma alma;
+    public Carbon carbon;
+    public Inventario inventario;
     private ScannerWrapper scanner;
 
 
@@ -30,6 +32,8 @@ public class Game {
         this.plata = new Plata();
         this.acero = new Acero();
         this.alma = new Alma();
+        this.carbon = new Carbon();
+        this.inventario = new Inventario();
 
     }
 
@@ -53,8 +57,10 @@ public class Game {
         System.out.println("[2] para curarte.");
         System.out.println("[3] para ver tus armas y seleccionar una.");
         System.out.println("[4] para explorar");
-        System.out.println("[5] para minar");
-        System.out.println("[6] para cambiar tu nombre");
+        System.out.println("[5] para ver el inventario");
+        System.out.println("[6] para minar");
+        System.out.println("[7] para forjar");
+        System.out.println("[8] para cambiar tu nombre");
         System.out.println("[0] para terminar el juego");
 
 
@@ -63,43 +69,59 @@ public class Game {
         if (comando == 1) {
 
             jugador.vidaActual();
-
+            return;
         }
 
         if (comando == 2) {
 
             medicina.curar(jugador);
-
+            return;
         }
 
         if (comando == 3) {
 
             jugador.seleccionarArma(hierro, plata, acero, alma);
-
+            return;
         }
         if (comando == 4) {
 
             bosqueRetorcido.explorar(medicina, jugador, hierro, plata, alma, acero);
-
+            return;
         }
 
         if (comando == 5) {
 
-            minasOlvidadas.minar(hierro, plata);
+            inventario.mostrarInventario(hierro, alma, acero, medicina, plata);
+            return;
+        }
+
+        if(comando == 6){
+
+            minasOlvidadas.minar(hierro, plata, carbon);
 
         }
 
-        if (comando == 6) {
+        if(comando == 7){
+
+            jugador.forjar(hierro, carbon, acero);
+
+
+        }
+
+        if (comando == 8) {
 
             System.out.println("Escribe tu nuevo nombre:");
             String nombre = scanner.getString();
             jugador.setNombre(nombre);
             System.out.println("Tu nuevo nombre es " + nombre);
+            return;
         }
 
         if (comando == 0) {
 
+            System.out.println("Nos vemos :)");
             System.exit(-1);
+            return;
         }
     }
 }
