@@ -46,19 +46,6 @@ public class Jugador extends Entidad {
             System.out.println("Arma Actual: " + armaSelecionada.nombreDelArma);
 
         }
-
-        if(armaActual.durabilidad <= 0){
-
-            System.out.println("El arma actual esta dañada usa otra");
-            armaActual = null;
-
-            if(armaActual == null){
-
-                seleccionarArma(hierro, plata, acero, alma);
-            }
-
-        }
-
     }
 
     public void seleccionarArma(Hierro hierro, Plata plata, Acero acero, Alma alma) {
@@ -72,9 +59,12 @@ public class Jugador extends Entidad {
         int vistaArma = scanner.getInt();
 
         if (vistaArma == 1) {
-            armaSelecionada = espada;
 
+            armaSelecionada = espada;
             atributosDelArma(hierro, plata, acero, alma);
+
+
+
         }
 
         if (vistaArma == 2) {
@@ -117,7 +107,6 @@ public class Jugador extends Entidad {
                 objeto = hierro;
 
                 hierro.usarObjeto(espada);
-
             }
 
             if (repararArma == 2) {
@@ -150,10 +139,13 @@ public class Jugador extends Entidad {
 
         int probabilidadEnemigo = ThreadLocalRandom.current().nextInt(1, (1 + 50));
 
+
+
+
         if (probabilidadEnemigo < 50 && probabilidadEnemigo > 40) {
 
-            SoldadoDeLaRuina soldadoDeLaRuina = new SoldadoDeLaRuina();
-            enemigo = soldadoDeLaRuina;
+            MagoMalvado magoMalvado = new MagoMalvado();
+            enemigo = magoMalvado;
 
         }
 
@@ -172,15 +164,29 @@ public class Jugador extends Entidad {
 
         if (probabilidadEnemigo < 5 && probabilidadEnemigo > 1) {
 
-            Viego viego = new Viego();
-            enemigo = viego;
+            DragonMagistral dragonMagistral = new DragonMagistral();
+            enemigo = dragonMagistral;
 
         }
+
 
         System.out.println("¡ALERTA DE ENEMIGO!");
         System.out.println(enemigo.nombre + ":");
         System.out.println("vida: " + enemigo.vida);
         System.out.println("daño: " + enemigo.daño);
+
+        if(armaActual.durabilidad <= 0){
+
+            while(true){
+                armaActual = null;
+                System.out.println("El arma se rompio selecciona otra.");
+                seleccionarArma(hierro, plata, acero, alma);
+                if(armaActual != null){
+                    break;
+                }
+            }
+
+        }
 
         while (true) {
 
@@ -194,9 +200,15 @@ public class Jugador extends Entidad {
             if (ataque == 1) {
 
                 jugador.vida = jugador.vida - jugador.enemigo.daño;
-                armaActual.durabilidad = armaActual.durabilidad - 2;
+
                 if (vida < 0)
                     vida = 0;
+                
+                armaActual.durabilidad = armaActual.durabilidad - 2;
+
+                if(armaActual.durabilidad <= 0)
+                    armaActual.durabilidad = 0;
+
                 System.out.println("Vida jugador:" + vida);
                 jugador.enemigo.vida = jugador.enemigo.vida - armaActual.daño;
                 if (enemigo.vida < 0)
