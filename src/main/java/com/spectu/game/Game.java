@@ -95,13 +95,13 @@ public class Game {
             return;
         }
 
-        if(comando == 6){
+        if (comando == 6) {
 
             minasOlvidadas.minar(hierro, plata, carbon);
 
         }
 
-        if(comando == 7){
+        if (comando == 7) {
 
             jugador.forjar(hierro, carbon, acero);
 

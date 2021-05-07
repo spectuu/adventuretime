@@ -6,10 +6,7 @@ public class Espada extends Arma {
 
     public Espada() {
 
-        super(15, 70, "Cuerpo a cuerpo");
+        super(15, 2, "Cuerpo a cuerpo", "Espada");
 
     }
-
-
-
 }

@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Jugador extends Entidad {
 
     public Arma armaActual;
+    public Arma armaSelecionada;
     public Enemigo enemigo;
     public Espada espada = new Espada();
     public EspadaLarga espadaLarga = new EspadaLarga();
@@ -29,6 +30,37 @@ public class Jugador extends Entidad {
 
     }
 
+    public void atributosDelArma(Hierro hierro, Plata plata, Acero acero, Alma alma) {
+
+        System.out.println("ATRIBUTOS:");
+        System.out.println("Tipo de arma: " + armaSelecionada.tipoDeArma);
+        System.out.println("Daño: " + armaSelecionada.daño);
+        System.out.println("Durabilidad: " + armaSelecionada.durabilidad);
+        System.out.println("¿Quieres seleccionar este tipo de arma?");
+        System.out.println("[Escribe si o no]");
+        String seleccionDeArma = scanner.getString();
+
+        if (seleccionDeArma.equals("si")) {
+
+            armaActual = armaSelecionada;
+            System.out.println("Arma Actual: " + armaSelecionada.nombreDelArma);
+
+        }
+
+        if(armaActual.durabilidad <= 0){
+
+            System.out.println("El arma actual esta dañada usa otra");
+            armaActual = null;
+
+            if(armaActual == null){
+
+                seleccionarArma(hierro, plata, acero, alma);
+            }
+
+        }
+
+    }
+
     public void seleccionarArma(Hierro hierro, Plata plata, Acero acero, Alma alma) {
 
         System.out.println("Selecciona un arma usando: ");
@@ -40,86 +72,33 @@ public class Jugador extends Entidad {
         int vistaArma = scanner.getInt();
 
         if (vistaArma == 1) {
+            armaSelecionada = espada;
 
-            System.out.println("ATRIBUTOS:");
-            System.out.println("Tipo de arma: " + espada.tipoDeArma);
-            System.out.println("Daño: " + espada.daño);
-            System.out.println("Durabilidad: " + espada.durabilidad);
-            System.out.println("¿Quieres seleccionar la espada?");
-            System.out.println("[Escribe si o no]");
-            String seleccionDeArma = scanner.getString();
-
-            if (seleccionDeArma.equals("si")) {
-
-                armaActual = espada;
-                System.out.println("El arma actual es la espada");
-
-            } else {
-                return;
-            }
+            atributosDelArma(hierro, plata, acero, alma);
         }
 
         if (vistaArma == 2) {
+            armaSelecionada = espadaLarga;
 
-            System.out.println("ATRIBUTOS:");
-            System.out.println("Tipo de arma: " + espadaLarga.tipoDeArma);
-            System.out.println("Daño: " + espadaLarga.daño);
-            System.out.println("Durabilidad: " + espadaLarga.durabilidad);
-            System.out.println("¿Quieres seleccionar la espada larga?");
-            System.out.println("[Escribe si o no]");
-            String seleccionDeArma = scanner.getString();
+            atributosDelArma(hierro, plata, acero, alma);
 
-            if (seleccionDeArma.equals("si")) {
-
-                armaActual = espadaLarga;
-                System.out.println("El arma actual es la espada larga");
-
-
-            } else {
-
-                return;
-            }
         }
 
         if (vistaArma == 3) {
+            armaSelecionada = hacha;
 
-            System.out.println("ATRIBUTOS:");
-            System.out.println("Tipo de arma: " + hacha.tipoDeArma);
-            System.out.println("Daño: " + hacha.daño);
-            System.out.println("Durabilidad: " + hacha.durabilidad);
-            System.out.println("¿Quieres seleccionar el hacha?");
-            System.out.println("[Escribe si o no]");
-            String seleccionDeArma = scanner.getString();
+            atributosDelArma(hierro, plata, acero, alma);
 
-            if (seleccionDeArma.equals("si")) {
-
-                armaActual = hacha;
-                System.out.println("El arma actual es el hacha");
-
-            } else {
-
-                return;
-            }
         }
 
         if (vistaArma == 4) {
 
-            System.out.println("ATRIBUTOS:");
-            System.out.println("Tipo de arma: " + mazo.tipoDeArma);
-            System.out.println("Daño: " + mazo.daño);
-            System.out.println("Durabilidad: " + mazo.durabilidad);
-            System.out.println("¿Quieres seleccionar el mazo?");
-            System.out.println("[Escribe si o no]");
-            String seleccionDeArma = scanner.getString();
+            armaSelecionada = mazo;
 
-            if (seleccionDeArma.equals("si")) {
-
-                armaActual = mazo;
-                System.out.println("El arma actual es el mazo");
-
-            }
+            atributosDelArma(hierro, plata, acero, alma);
 
         }
+
         if (vistaArma == 5) {
 
             System.out.println("Aqui podras reparar tus armas para eso necesitaras un objeto en especifico del arma");
@@ -160,7 +139,7 @@ public class Jugador extends Entidad {
 
                 objeto = alma;
 
-               alma.usarObjeto(mazo);
+                alma.usarObjeto(mazo);
 
             }
 
@@ -248,10 +227,10 @@ public class Jugador extends Entidad {
 
             if (enemigo.vida <= 0) {
                 enemigo.vida = 0;
-
-                int botin = ThreadLocalRandom.current().nextInt(1 + (100 + 1));
-                int botin2 = ThreadLocalRandom.current().nextInt(1 + (3 + 1));
-                int botin3 = ThreadLocalRandom.current().nextInt(1 + (2 + 1));
+                int botin = ThreadLocalRandom.current().nextInt(1, (100 + 1));
+                int botin2 = ThreadLocalRandom.current().nextInt(1, (3 + 1));
+                int botin3 = ThreadLocalRandom.current().nextInt(1, (2 + 1));
+                int botin4 = ThreadLocalRandom.current().nextInt(2, 8);
 
                 System.out.println("Felicidades has derrotado al enemigo!");
 
@@ -260,9 +239,10 @@ public class Jugador extends Entidad {
                     System.out.println("BOTIN:");
                     System.out.println("vendas obtenidas [" + botin2 + "]");
                     System.out.println("Hierro obtenido [" + botin3 + "]");
+                    System.out.println("Almas obtenidas [" + botin4 + "]");
                     vendas.cantidad = vendas.cantidad + botin2;
                     hierro.cantidad = hierro.cantidad + botin3;
-
+                    alma.cantidad = alma.cantidad + botin4;
 
                 } else {
 
@@ -273,8 +253,7 @@ public class Jugador extends Entidad {
 
             }
 
-            if (vida <= 0) {
-
+            if (vida <= 0 || vida <= 0 && enemigo.vida <= 0) {
 
                 System.out.println("Has muerto ahora dedice: ");
                 System.out.println("[Escribe [1] para vivir]");
@@ -294,7 +273,7 @@ public class Jugador extends Entidad {
                     vendas.cantidad = vendas.cantidad - perdida;
                     if (plata.cantidad < 0)
                         plata.cantidad = 0;
-                    vida = vida + 50;
+                    vida = vida + 20;
                     break;
                 } else if (vivirOMorir == 2) {
 
@@ -310,22 +289,37 @@ public class Jugador extends Entidad {
         System.out.println("[1] para forjar acero");
         int forjarOpcion = scanner.getInt();
 
-        if(forjarOpcion == 1){
+        if (forjarOpcion == 1) {
 
-            if(hierro.cantidad > 0 && carbon.cantidad > 0){
+            if (hierro.cantidad <= 0 && carbon.cantidad <= 0) {
 
-                hierro.cantidad = hierro.cantidad-2;
-                carbon.cantidad = carbon.cantidad-2;
+                System.out.println("No tienes materiales.");
 
-
-                acero.cantidad = acero.cantidad+1;
-                System.out.println("Acero cantidad: " + acero.cantidad);
-
-            }else if(hierro.cantidad <= 0){
+            } else if (hierro.cantidad < 2) {
 
                 System.out.println("No tienes hierro suficiente.");
 
-            }else if(carbon.cantidad <= 0){
+            } else if (carbon.cantidad < 2) {
+
+                System.out.println("No tienes carbon suficiente.");
+
+            }
+
+            if (hierro.cantidad >= 2 && carbon.cantidad >= 2) {
+
+
+                hierro.cantidad = hierro.cantidad - 2;
+                carbon.cantidad = carbon.cantidad - 2;
+
+
+                acero.cantidad = acero.cantidad + 1;
+                System.out.println("Acero cantidad: " + acero.cantidad);
+
+            } else if (hierro.cantidad < 2) {
+
+                System.out.println("No tienes hierro suficiente.");
+
+            } else if (carbon.cantidad < 2) {
 
                 System.out.println("No tienes carbon suficiente.");
 
@@ -333,4 +327,3 @@ public class Jugador extends Entidad {
         }
     }
 }
-

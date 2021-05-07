@@ -16,7 +16,7 @@ public class Objeto {
 
     }
 
-    public void usarObjeto(Arma arma){
+    public void usarObjeto(Arma arma) {
 
         if (cantidad > 0) {
 
@@ -38,7 +38,7 @@ public class Objeto {
         }
     }
 
-    public int getCantidad(){
+    public int getCantidad() {
 
         return cantidad;
     }

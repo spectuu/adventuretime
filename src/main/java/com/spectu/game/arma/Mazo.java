@@ -7,7 +7,7 @@ public class Mazo extends Arma {
 
     public Mazo() {
 
-        super(150, 100, "Media distancia");
+        super(150, 100, "Media distancia", " Mazo");
 
     }
 }

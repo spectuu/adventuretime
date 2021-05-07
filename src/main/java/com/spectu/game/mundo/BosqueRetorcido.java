@@ -21,7 +21,7 @@ public class BosqueRetorcido {
 
             int vendasObtenidas = ThreadLocalRandom.current().nextInt(1, (3 + 1));
             int probabilidadVendas = ThreadLocalRandom.current().nextInt(1, (100 + 1));
-            int almas = ThreadLocalRandom.current().nextInt(1, (3+1));
+            int almas = ThreadLocalRandom.current().nextInt(1, (3 + 1));
             int probabilidadEnemigo = ThreadLocalRandom.current().nextInt(1, 100 + 1);
 
             if (probabilidadVendas > 50) {

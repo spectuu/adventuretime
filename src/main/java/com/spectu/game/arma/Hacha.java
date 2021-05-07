@@ -5,7 +5,7 @@ public class Hacha extends Arma {
 
     public Hacha() {
 
-        super(35, 100, "distancia media");
+        super(35, 100, "distancia media", "Hacha");
 
     }
 }
