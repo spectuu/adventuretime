@@ -30,7 +30,7 @@ public class Jugador extends Entidad {
 
     }
 
-    public void atributosDelArma(Hierro hierro, Plata plata, Acero acero, Alma alma) {
+    public void atributosDelArma() {
 
         System.out.println("ATRIBUTOS:");
         System.out.println("Tipo de arma: " + armaSelecionada.tipoDeArma);
@@ -61,7 +61,18 @@ public class Jugador extends Entidad {
         if (vistaArma == 1) {
 
             armaSelecionada = espada;
-            atributosDelArma(hierro, plata, acero, alma);
+            atributosDelArma();
+
+            if(armaSelecionada.durabilidad <= 0){
+                while(true){
+                    armaSelecionada = null;
+                    System.out.println("El arma seleccionada esta rota");
+                    seleccionarArma(hierro, plata, acero, alma);
+                    if(armaSelecionada != null){
+                        break;
+                    }
+                }
+            }
 
 
 
@@ -70,14 +81,14 @@ public class Jugador extends Entidad {
         if (vistaArma == 2) {
             armaSelecionada = espadaLarga;
 
-            atributosDelArma(hierro, plata, acero, alma);
+            atributosDelArma();
 
         }
 
         if (vistaArma == 3) {
             armaSelecionada = hacha;
 
-            atributosDelArma(hierro, plata, acero, alma);
+            atributosDelArma();
 
         }
 
@@ -85,7 +96,7 @@ public class Jugador extends Entidad {
 
             armaSelecionada = mazo;
 
-            atributosDelArma(hierro, plata, acero, alma);
+            atributosDelArma();
 
         }
 
@@ -142,27 +153,27 @@ public class Jugador extends Entidad {
 
 
 
-        if (probabilidadEnemigo < 50 && probabilidadEnemigo > 40) {
+        if (probabilidadEnemigo <= 50 && probabilidadEnemigo >= 40) {
 
             MagoMalvado magoMalvado = new MagoMalvado();
             enemigo = magoMalvado;
 
         }
 
-        if (probabilidadEnemigo < 40 && probabilidadEnemigo > 30) {
+        if (probabilidadEnemigo <= 40 && probabilidadEnemigo >= 30) {
             Fantasma fantasma = new Fantasma();
             enemigo = fantasma;
 
         }
 
-        if (probabilidadEnemigo < 20 && probabilidadEnemigo > 1) {
+        if (probabilidadEnemigo <= 20 && probabilidadEnemigo >= 1) {
 
             CaballeroSombrio caballeroSombrio = new CaballeroSombrio();
             enemigo = caballeroSombrio;
 
         }
 
-        if (probabilidadEnemigo < 5 && probabilidadEnemigo > 1) {
+        if (probabilidadEnemigo <= 5 && probabilidadEnemigo >= 1) {
 
             DragonMagistral dragonMagistral = new DragonMagistral();
             enemigo = dragonMagistral;
@@ -175,19 +186,6 @@ public class Jugador extends Entidad {
         System.out.println("vida: " + enemigo.vida);
         System.out.println("daño: " + enemigo.daño);
 
-        if(armaActual.durabilidad <= 0){
-
-            while(true){
-                armaActual = null;
-                System.out.println("El arma se rompio selecciona otra.");
-                seleccionarArma(hierro, plata, acero, alma);
-                if(armaActual != null){
-                    break;
-                }
-            }
-
-        }
-
         while (true) {
 
             System.out.println("Comandos para la pelea:");
@@ -199,13 +197,23 @@ public class Jugador extends Entidad {
 
             if (ataque == 1) {
 
+                if(armaActual.durabilidad <= 0){
+
+                    while(true){
+                        armaActual = null;
+                        System.out.println("El arma se rompio selecciona otra.");
+                        seleccionarArma(hierro, plata, acero, alma);
+                        if(armaActual != null){
+                            break;
+                        }
+                    }
+                }
                 jugador.vida = jugador.vida - jugador.enemigo.daño;
 
                 if (vida < 0)
                     vida = 0;
                 
                 armaActual.durabilidad = armaActual.durabilidad - 2;
-
                 if(armaActual.durabilidad <= 0)
                     armaActual.durabilidad = 0;
 

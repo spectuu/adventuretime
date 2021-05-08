@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="AdventureTime" />
-        <module name="adventuretime" />
-        <module name="adventuretime-master" />
         <module name="RPGQuest" />
+        <module name="AdventureTime" />
+        <module name="adventuretime-master" />
+        <module name="adventuretime" />
       </profile>
     </annotationProcessing>
   </component>
