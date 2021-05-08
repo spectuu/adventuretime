@@ -16,13 +16,17 @@ public class Medicina extends Objeto {
         if (cantidad > 0) {
 
             jugador.vida = jugador.vida + 15;
-            if (jugador.vida > 100)
+            if (jugador.vida > 100){
                 jugador.vida = 100;
+                System.out.println("La vida maxima es 100.");
+            }else{
 
-            System.out.println("Vida actual: " + jugador.vida);
-            cantidad = cantidad - 1;
+                System.out.println("Vida actual: " + jugador.vida);
+                cantidad = cantidad - 1;
 
-        } else if (cantidad <= 0) {
+            }
+
+            } else if (cantidad <= 0) {
 
             cantidad = 0;
             System.out.println("no tienes vendas para curarte");

@@ -80,24 +80,52 @@ public class Jugador extends Entidad {
 
         if (vistaArma == 2) {
             armaSelecionada = espadaLarga;
-
             atributosDelArma();
+            if(armaSelecionada.durabilidad <= 0){
+                while(true){
+                    armaSelecionada = null;
+                    System.out.println("El arma seleccionada esta rota");
+                    seleccionarArma(hierro, plata, acero, alma);
+                    if(armaSelecionada != null){
+                        break;
+                    }
+                }
+            }
+
 
         }
 
         if (vistaArma == 3) {
             armaSelecionada = hacha;
-
             atributosDelArma();
+            if(armaSelecionada.durabilidad <= 0){
+                while(true){
+                    armaSelecionada = null;
+                    System.out.println("El arma seleccionada esta rota");
+                    seleccionarArma(hierro, plata, acero, alma);
+                    if(armaSelecionada != null){
+                        break;
+                    }
+                }
+            }
+
 
         }
 
         if (vistaArma == 4) {
 
             armaSelecionada = mazo;
-
             atributosDelArma();
-
+            if(armaSelecionada.durabilidad <= 0){
+                while(true){
+                    armaSelecionada = null;
+                    System.out.println("El arma seleccionada esta rota");
+                    seleccionarArma(hierro, plata, acero, alma);
+                    if(armaSelecionada != null){
+                        break;
+                    }
+                }
+            }
         }
 
         if (vistaArma == 5) {
@@ -180,6 +208,11 @@ public class Jugador extends Entidad {
 
         }
 
+        if(enemigo == null){
+
+            return;
+        }
+
 
         System.out.println("¡ALERTA DE ENEMIGO!");
         System.out.println(enemigo.nombre + ":");
@@ -241,12 +274,13 @@ public class Jugador extends Entidad {
             }
 
             if (ataque == 4) {
-
+                enemigo = null;
                 break;
             }
 
             if (enemigo.vida <= 0) {
                 enemigo.vida = 0;
+                enemigo = null;
                 int botin = ThreadLocalRandom.current().nextInt(1, (100 + 1));
                 int botin2 = ThreadLocalRandom.current().nextInt(1, (3 + 1));
                 int botin3 = ThreadLocalRandom.current().nextInt(1, (2 + 1));
@@ -274,7 +308,7 @@ public class Jugador extends Entidad {
             }
 
             if (vida <= 0 || vida <= 0 && enemigo.vida <= 0) {
-
+                enemigo = null;
                 System.out.println("Has muerto ahora dedice: ");
                 System.out.println("[Escribe [1] para vivir]");
                 System.out.println("Escribe [2] para morir");
