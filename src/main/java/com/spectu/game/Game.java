@@ -91,7 +91,7 @@ public class Game {
 
         if (comando == 5) {
 
-            inventario.mostrarInventario(hierro, alma, acero, medicina, plata);
+            inventario.mostrarInventario(hierro, alma, acero, medicina, plata, carbon);
             return;
         }
 

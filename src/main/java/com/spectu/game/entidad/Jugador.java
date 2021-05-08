@@ -341,23 +341,10 @@ public class Jugador extends Entidad {
 
         System.out.println("¿Que quieres forjar?");
         System.out.println("[1] para forjar acero");
+        System.out.println("[Para el acero necesitas 2 de hierro y 2 de carbon]");
         int forjarOpcion = scanner.getInt();
 
         if (forjarOpcion == 1) {
-
-            if (hierro.cantidad <= 0 && carbon.cantidad <= 0) {
-
-                System.out.println("No tienes materiales.");
-
-            } else if (hierro.cantidad < 2) {
-
-                System.out.println("No tienes hierro suficiente.");
-
-            } else if (carbon.cantidad < 2) {
-
-                System.out.println("No tienes carbon suficiente.");
-
-            }
 
             if (hierro.cantidad >= 2 && carbon.cantidad >= 2) {
 
@@ -368,7 +355,6 @@ public class Jugador extends Entidad {
 
                 acero.cantidad = acero.cantidad + 1;
                 System.out.println("Acero cantidad: " + acero.cantidad);
-
             } else if (hierro.cantidad < 2) {
 
                 System.out.println("No tienes hierro suficiente.");
