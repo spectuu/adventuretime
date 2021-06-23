@@ -61,6 +61,7 @@ public class Game {
         System.out.println("[6] para minar");
         System.out.println("[7] para forjar");
         System.out.println("[8] para cambiar tu nombre");
+        System.out.println("[9] para guardar la partida");
         System.out.println("[0] para terminar el juego");
 
 
@@ -117,8 +118,13 @@ public class Game {
             return;
         }
 
-        if (comando == 0) {
+        if(comando == 9){
+            fileManagement.crearArchivo("stats");
 
+            System.out.println("La partida se ha guardado correctamente.");
+        }
+
+        if (comando == 0) {
             System.out.println("Nos vemos :)");
             System.exit(-1);
             return;
