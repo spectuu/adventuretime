@@ -1,0 +1,15 @@
+Name player: weerr
+Weapons: 
+Espada{ 
+Durability: 2
+ }
+Espada larga{ 
+Durability: 100
+ }
+Hacha{ 
+Durability: 100
+ }
+ Mazo{ 
+Durability:100
+ }
+

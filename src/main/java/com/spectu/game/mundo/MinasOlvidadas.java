@@ -2,13 +2,18 @@ package com.spectu.game.mundo;
 
 import com.spectu.game.objeto.Carbon;
 import com.spectu.game.objeto.Hierro;
+import com.spectu.game.objeto.Inventario;
 import com.spectu.game.objeto.Plata;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MinasOlvidadas {
 
-    public void minar(Hierro hierro, Plata plata, Carbon carbon) {
+    public void minar(Inventario inventario) {
+
+        Hierro hierro = inventario.getHierro();
+        Plata plata = inventario.getPlata();
+        Carbon carbon = inventario.getCarbon();
 
         int hierroObtenido = ThreadLocalRandom.current().nextInt(1, (2 + 1));
         int plataObtenida = ThreadLocalRandom.current().nextInt(1, 6);

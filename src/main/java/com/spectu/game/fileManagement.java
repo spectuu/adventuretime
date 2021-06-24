@@ -13,7 +13,6 @@ public class fileManagement {
         try {
             PrintWriter salida = new PrintWriter(archivo);
             salida.close();
-            System.out.println("El archivo se ha creado.");
         } catch (FileNotFoundException ex) {
 
             ex.printStackTrace(System.out);
@@ -28,7 +27,6 @@ public class fileManagement {
             PrintWriter salida = new PrintWriter(archivo);
             salida.println(texto);
             salida.close();
-            System.out.println("Se ha escrito el texto.");
         } catch (FileNotFoundException ex) {
 
             ex.printStackTrace(System.out);
@@ -44,13 +42,11 @@ public class fileManagement {
             PrintWriter salida = new PrintWriter(new FileWriter(archivo, true));
             salida.println(texto);
             salida.close();
-            System.out.println("Se ha anexado el texto.");
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
-
     }
 
     public static List<String> leerArchivo(String nombreArchivo) {

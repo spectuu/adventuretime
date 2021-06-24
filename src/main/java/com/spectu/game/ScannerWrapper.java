@@ -12,9 +12,20 @@ public class ScannerWrapper {
 
     public int getInt() {
 
-        int scannerInt = scanner.nextInt();
-        getString();
-        return scannerInt;
+        try {
+
+            int scannerInt = scanner.nextInt();
+            getString();
+            return scannerInt;
+
+        } catch(Exception e) {
+
+            System.out.println("El valor introducido es incorrecto!");
+
+            scanner.nextLine();
+            return -1;
+
+        }
 
     }
 

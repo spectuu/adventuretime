@@ -16,11 +16,14 @@ public class Jugador extends Entidad {
     public Hacha hacha = new Hacha();
     public Mazo mazo = new Mazo();
     public Objeto objeto;
+    public Inventario inventario;
     private ScannerWrapper scanner = new ScannerWrapper();
 
 
     public Jugador(String nombre) {
         super(nombre, 50);
+
+        this.inventario = new Inventario(new Hierro(), new Plata(), new Acero(), new Alma(), new Carbon(), new Medicina());
 
     }
 
@@ -48,7 +51,7 @@ public class Jugador extends Entidad {
         }
     }
 
-    public void seleccionarArma(Hierro hierro, Plata plata, Acero acero, Alma alma) {
+    public void seleccionarArma() {
 
         System.out.println("Selecciona un arma usando: ");
         System.out.println("[1] para la espada.");
@@ -67,7 +70,7 @@ public class Jugador extends Entidad {
                 while(true){
                     armaSelecionada = null;
                     System.out.println("El arma seleccionada esta rota");
-                    seleccionarArma(hierro, plata, acero, alma);
+                    seleccionarArma();
                     if(armaSelecionada != null){
                         break;
                     }
@@ -85,7 +88,7 @@ public class Jugador extends Entidad {
                 while(true){
                     armaSelecionada = null;
                     System.out.println("El arma seleccionada esta rota");
-                    seleccionarArma(hierro, plata, acero, alma);
+                    seleccionarArma();
                     if(armaSelecionada != null){
                         break;
                     }
@@ -102,7 +105,7 @@ public class Jugador extends Entidad {
                 while(true){
                     armaSelecionada = null;
                     System.out.println("El arma seleccionada esta rota");
-                    seleccionarArma(hierro, plata, acero, alma);
+                    seleccionarArma();
                     if(armaSelecionada != null){
                         break;
                     }
@@ -120,7 +123,7 @@ public class Jugador extends Entidad {
                 while(true){
                     armaSelecionada = null;
                     System.out.println("El arma seleccionada esta rota");
-                    seleccionarArma(hierro, plata, acero, alma);
+                    seleccionarArma();
                     if(armaSelecionada != null){
                         break;
                     }
@@ -142,44 +145,32 @@ public class Jugador extends Entidad {
             int repararArma = scanner.getInt();
 
             if (repararArma == 1) {
-
-                objeto = hierro;
-
-                hierro.usarObjeto(espada);
+                inventario.getHierro().usarObjeto(espada);
             }
 
             if (repararArma == 2) {
 
-                objeto = plata;
-
-                plata.usarObjeto(hacha);
+                inventario.getPlata().usarObjeto(hacha);
 
             }
 
             if (repararArma == 3) {
 
-                objeto = acero;
-
-                acero.usarObjeto(espadaLarga);
+                inventario.getAcero().usarObjeto(espadaLarga);
             }
 
             if (repararArma == 4) {
 
-                objeto = alma;
-
-                alma.usarObjeto(mazo);
+                inventario.getAlma().usarObjeto(mazo);
 
             }
 
         }
     }
 
-    public void pelear(Hierro hierro, Medicina vendas, Jugador jugador, Plata plata, Acero acero, Alma alma) {
+    public void pelear(Jugador jugador) {
 
         int probabilidadEnemigo = ThreadLocalRandom.current().nextInt(1, (1 + 50));
-
-
-
 
         if (probabilidadEnemigo <= 50 && probabilidadEnemigo >= 40) {
 
@@ -219,6 +210,11 @@ public class Jugador extends Entidad {
         System.out.println("vida: " + enemigo.vida);
         System.out.println("daño: " + enemigo.daño);
 
+        Medicina vendas = jugador.inventario.getMedicina();
+        Hierro hierro = jugador.inventario.getHierro();
+        Alma alma = jugador.inventario.getAlma();
+        Plata plata = jugador.inventario.getPlata();
+
         while (true) {
 
             System.out.println("Comandos para la pelea:");
@@ -235,7 +231,7 @@ public class Jugador extends Entidad {
                     while(true){
                         armaActual = null;
                         System.out.println("El arma se rompio selecciona otra.");
-                        seleccionarArma(hierro, plata, acero, alma);
+                        seleccionarArma();
                         if(armaActual != null){
                             break;
                         }
@@ -269,7 +265,7 @@ public class Jugador extends Entidad {
 
                 System.out.println("Seleccion el arma con la que vas a atacar:");
 
-                seleccionarArma(hierro, plata, acero, alma);
+                seleccionarArma();
 
             }
 
@@ -301,6 +297,7 @@ public class Jugador extends Entidad {
                 } else {
 
                     System.out.println("Parace que el enemigo no tenia nada de valor suerte para la proxima :b");
+
                 }
 
                 break;
@@ -337,7 +334,11 @@ public class Jugador extends Entidad {
         }
     }
 
-    public void forjar(Hierro hierro, Carbon carbon, Acero acero) {
+    public void forjar(Inventario inventario) {
+
+        Hierro hierro = inventario.getHierro();
+        Carbon carbon = inventario.getCarbon();
+        Acero acero = inventario.getAcero();
 
         System.out.println("¿Que quieres forjar?");
         System.out.println("[1] para forjar acero");

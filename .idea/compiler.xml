@@ -11,6 +11,7 @@
         <module name="adventuretime-master" />
         <module name="rpgquest" />
         <module name="RPGQuest" />
+        <module name="game-test" />
       </profile>
     </annotationProcessing>
   </component>

@@ -10,7 +10,7 @@ public class BosqueRetorcido {
 
     private ScannerWrapper scanner;
 
-    public void explorar(Medicina vendas, Jugador jugador, Hierro hierro, Plata plata, Alma alma, Acero acero) {
+    public void explorar(Jugador jugador) {
 
         if (jugador.armaActual == null) {
 
@@ -23,6 +23,9 @@ public class BosqueRetorcido {
             int probabilidadVendas = ThreadLocalRandom.current().nextInt(1, (100 + 1));
             int almas = ThreadLocalRandom.current().nextInt(1, (3 + 1));
             int probabilidadEnemigo = ThreadLocalRandom.current().nextInt(1, 100 + 1);
+
+            Medicina vendas = jugador.inventario.getMedicina();
+            Alma alma = jugador.inventario.getAlma();
 
             if (probabilidadVendas > 50) {
 
@@ -40,7 +43,7 @@ public class BosqueRetorcido {
 
             if (probabilidadEnemigo < 50 && probabilidadEnemigo > 1) {
 
-                jugador.pelear(hierro, vendas, jugador, plata, acero, alma);
+                jugador.pelear(jugador);
             }
         }
     }

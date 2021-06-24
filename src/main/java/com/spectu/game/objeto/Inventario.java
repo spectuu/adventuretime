@@ -1,34 +1,51 @@
 package com.spectu.game.objeto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Inventario {
 
-    int[] inventarioNumero = new int[6];
-    String[] inventarioTipoDeObjeto = new String[6];
+    public Objeto[] objetos;
 
-    public void mostrarInventario(Hierro hierro, Alma alma, Acero acero, Medicina vendas, Plata plata, Carbon carbon) {
-
-    inventarioNumero[0] = hierro.cantidad;
-    inventarioNumero[1] = alma.cantidad;
-    inventarioNumero[2] = acero.cantidad;
-    inventarioNumero[3] = vendas.cantidad;
-    inventarioNumero[4] = plata.cantidad;
-    inventarioNumero[5] = carbon.cantidad;
-
-
-    inventarioTipoDeObjeto[0] = hierro.tipoDeObjeto;
-    inventarioTipoDeObjeto[1] = alma.tipoDeObjeto;
-    inventarioTipoDeObjeto[2] = acero.tipoDeObjeto;
-    inventarioTipoDeObjeto[3] = vendas.tipoDeObjeto;
-    inventarioTipoDeObjeto[4] = plata.tipoDeObjeto;
-    inventarioTipoDeObjeto[5] = carbon.tipoDeObjeto;
-
-    for(int i = 0; i < inventarioNumero.length; i++){
-
-        System.out.println("[" + inventarioNumero[i] + "] " + inventarioTipoDeObjeto[i]);
-
-     }
+    public Inventario(Objeto...objetos) {
+        this.objetos = objetos;
     }
+
+    public void mostrarInventario() {
+        for(int i = 0; i < objetos.length; i++){
+            Objeto objeto = objetos[i];
+            System.out.println("[" + objeto.cantidad + "] " + objeto.tipoDeObjeto);
+        }
+    }
+
+    public Carbon getCarbon() {
+        return (Carbon) getByName("Carbon");
+    }
+
+    public Plata getPlata() {
+        return (Plata) getByName("Plata");
+    }
+
+    public Medicina getMedicina() {
+        return (Medicina)  getByName("Vendas");
+    }
+
+    public Acero getAcero() {
+        return (Acero) getByName("Acero");
+    }
+
+    public Hierro getHierro() {
+        return (Hierro) getByName("Hierro");
+    }
+
+    public Alma getAlma() {
+        return (Alma) getByName("Alma");
+    }
+
+    public Objeto getByName(String name) {
+        for(Objeto objeto : objetos) {
+            if(objeto.tipoDeObjeto.equals(name)) {
+                return objeto;
+            }
+        }
+        return null;
+    }
+
 }
