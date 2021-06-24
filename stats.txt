@@ -1,4 +1,5 @@
-Name player: weerr
+Player name: ererf
+Player heal:50
 Weapons: 
 Espada{ 
 Durability: 2
@@ -12,4 +13,9 @@ Durability: 100
  Mazo{ 
 Durability:100
  }
-
+[12] Hierro
+[27] Plata
+[0] Acero
+[0] Alma
+[18] Carbon
+[0] Vendas

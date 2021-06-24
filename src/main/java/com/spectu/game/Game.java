@@ -118,7 +118,10 @@ public class Game {
                     + "Durability: " + jugador.hacha.durabilidad + "\n }" + "\n" + jugador.mazo.nombreDelArma + "{ \n"
                     + "Durability:" + jugador.mazo.durabilidad + "\n }"
             );
-            fileManagement.anexarInformacion(saves, "Inventory: ");
+            for(int i = 0; i < jugador.inventario.objetos.length; i++){
+                Objeto objeto = jugador.inventario.objetos[i];
+                fileManagement.anexarInformacion(saves, "[" + objeto.cantidad + "] " + objeto.tipoDeObjeto);
+            }
             System.out.println("La partida se ha guardado correctamente.");
         }
 

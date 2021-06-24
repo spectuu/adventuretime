@@ -7,7 +7,6 @@ public class Inventario {
     public Inventario(Objeto...objetos) {
         this.objetos = objetos;
     }
-
     public void mostrarInventario() {
         for(int i = 0; i < objetos.length; i++){
             Objeto objeto = objetos[i];
