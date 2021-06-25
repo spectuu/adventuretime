@@ -12,6 +12,7 @@ public class Game {
     public String nombre;
     public BosqueRetorcido bosqueRetorcido;
     public MinasOlvidadas minasOlvidadas;
+    public String saves = "stats.txt";
 
     private ScannerWrapper scanner;
 
@@ -108,21 +109,57 @@ public class Game {
         }
 
         if(comando == 9){
-            String saves = "stats.txt";
             fileManagement.crearArchivo(saves);
             fileManagement.anexarInformacion(saves, "Player name: " + jugador.getNombre());
-            fileManagement.anexarInformacion(saves, "Player heal:" + jugador.vida);
-            fileManagement.anexarInformacion(saves, "Weapons: \n" + jugador.espada.nombreDelArma + "{ \n"
+            fileManagement.anexarInformacion(saves, "Player heal: " + jugador.vida);
+            fileManagement.anexarInformacion(saves, "Weapons: \n " + jugador.espada.nombreDelArma + "{ \n"
                     + "Durability: " + jugador.espada.durabilidad + "\n }" + "\n" + jugador.espadaLarga.nombreDelArma + "{ \n"
                     + "Durability: " + jugador.espadaLarga.durabilidad + "\n }" + "\n" + jugador.hacha.nombreDelArma + "{ \n"
-                    + "Durability: " + jugador.hacha.durabilidad + "\n }" + "\n" + jugador.mazo.nombreDelArma + "{ \n"
-                    + "Durability:" + jugador.mazo.durabilidad + "\n }"
+                    + "Durability: " + jugador.hacha.durabilidad + "\n }" + "\n" + jugador.mazo.nombreDelArma + "{\n"
+                    + "Durability: " + jugador.mazo.durabilidad + "\n }"
             );
+            fileManagement.anexarInformacion(saves, "inventory: ");
             for(int i = 0; i < jugador.inventario.objetos.length; i++){
                 Objeto objeto = jugador.inventario.objetos[i];
                 fileManagement.anexarInformacion(saves, "[" + objeto.cantidad + "] " + objeto.tipoDeObjeto);
             }
             System.out.println("La partida se ha guardado correctamente.");
+        }
+
+        if(comando == 10){
+            boolean isReadingWeapons = false;
+            boolean isReadingInventory = false;
+            boolean isReadingEspada = false;
+            boolean isReadingEspadaLarga = false;
+            for(String line: fileManagement.leerArchivo(saves)){
+                if(line.startsWith("Player name: ")) {
+                    String name = line.replaceFirst("Player name: ", "");
+                    continue;
+                }
+                if(line.startsWith("Weapons:")) {
+                    isReadingWeapons = true;
+                    continue;
+                }
+                if(line.startsWith("Espada{ ") && isReadingWeapons){
+                    isReadingEspada = true;
+                    continue;
+                }
+                if(line.startsWith("Durability: ") && isReadingEspada){
+                    String durabilityEspada = line.replaceFirst("Durability: ", "");
+                    isReadingEspada = false;
+                    continue;
+                }
+                if(line.startsWith("Espada larga{")){
+                    isReadingEspadaLarga = true;
+                    continue;
+                }
+                if(line.startsWith("Durability: ") && isReadingEspadaLarga){
+                    String durabilityEspadaLarga = line.replaceFirst("Durability: ", "");
+                    isReadingEspadaLarga = false;
+                    continue;
+                }
+                System.out.println(line);
+            }
         }
 
 

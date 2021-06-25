@@ -1,7 +1,7 @@
-Player name: ererf
-Player heal:50
+Player name: sss
+Player heal: 50
 Weapons: 
-Espada{ 
+ Espada{ 
 Durability: 2
  }
 Espada larga{ 
@@ -11,11 +11,12 @@ Hacha{
 Durability: 100
  }
  Mazo{ 
-Durability:100
+Durability: 100
  }
-[12] Hierro
-[27] Plata
+inventory: 
+[14] Hierro
+[32] Plata
 [0] Acero
 [0] Alma
-[18] Carbon
+[20] Carbon
 [0] Vendas
