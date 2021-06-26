@@ -1,22 +1,34 @@
-Player name: sss
-Player heal: 50
+Player name: Spectu the king
+Player heal: 100
 Weapons: 
- Espada{ 
+Espada{
 Durability: 2
- }
-Espada larga{ 
+}
+Espada larga{
+Durability: 100
+}
+Hacha{
 Durability: 100
  }
-Hacha{ 
-Durability: 100
- }
- Mazo{ 
-Durability: 100
- }
+Mazo{
+Durability: 96
+}
 inventory: 
-[14] Hierro
-[32] Plata
-[0] Acero
-[0] Alma
-[20] Carbon
-[0] Vendas
+Hierro{ 
+ Amount:56
+ }
+Plata{ 
+ Amount:56
+ }
+Acero{ 
+ Amount:56
+ }
+Alma{ 
+ Amount:56
+ }
+Carbon{ 
+ Amount:56
+ }
+Vendas{ 
+ Amount:56
+ }

@@ -137,6 +137,7 @@ public class Jugador extends Entidad {
             System.out.println("[Espada] se reparar con hierro.");
             System.out.println("[Hacha] se reparar con plata.");
             System.out.println("[Espada larga] se reparar con acero.");
+            System.out.println("[Mazo] se repara con almas.");
             System.out.println("Usa: ");
             System.out.println("[1] para reparar la espada.");
             System.out.println("[2] para reparar el hacha.");

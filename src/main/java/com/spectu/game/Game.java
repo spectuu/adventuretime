@@ -28,13 +28,158 @@ public class Game {
     }
 
     public void start() {
-
-        System.out.println("Ingresa el nombre de tu personaje: ");
-        nombre = scanner.getString();
-        jugador.setNombre(nombre);
-
-        System.out.println("Bienvenido " + "a RPGQuest " + jugador.getNombre() + " espero y te diviertas! \n");
-
+        System.out.println("Bienvenido a RPGQUEST:");
+        System.out.println("[1] para iniciar una nueva partida");
+        System.out.println("[2] para continuar una partida pre-guardada");
+        int menuPrincipal = scanner.getInt();
+        if(menuPrincipal == 1) {
+            System.out.println("Ingresa el nombre de tu personaje: ");
+            nombre = scanner.getString();
+            jugador.setNombre(nombre);
+            System.out.println("ya puedes divertirte " + nombre + "!");
+        }
+        if(menuPrincipal == 2){
+            boolean isReadingWeapons = false;
+            boolean isReadingInventory = false;
+            boolean isReadingEspada = false;
+            boolean isReadingEspadaLarga = false;
+            boolean isReadingHacha = false;
+            boolean isReadingMazo = false;
+            boolean isReadingHierro = false;
+            boolean isReadingPlata = false;
+            boolean isReadingAcero = false;
+            boolean isReadingAlma = false;
+            boolean isReadingCarbon = false;
+            boolean isReadingVendas = false;
+            for(String line: fileManagement.leerArchivo(saves)){
+                if(line.startsWith("Player name: ")) {
+                    String name = line.replaceFirst("Player name: ", "");
+                    jugador.nombre = name;
+                    continue;
+                }
+                if(line.startsWith("Player heal: ")){
+                    String heal = line.replaceFirst("Player heal: ", "");
+                    int playerHeal = Integer.parseInt(heal);
+                    jugador.vida = playerHeal;
+                }
+                if(line.startsWith("Weapons:")) {
+                    isReadingWeapons = true;
+                    continue;
+                }
+                if(line.startsWith("Espada{ ") && isReadingWeapons){
+                    isReadingEspada = true;
+                    continue;
+                }
+                if(line.startsWith("Durability: ") && isReadingEspada){
+                    String espada = line.replaceFirst("Durability: ", "");
+                    int durabilityEspada = Integer.parseInt(espada);
+                    jugador.espada.durabilidad = durabilityEspada;
+                    isReadingEspada = false;
+                    continue;
+                }
+                if(line.startsWith("Espada larga{ ")){
+                    isReadingEspadaLarga = true;
+                    continue;
+                }
+                if(line.startsWith("Durability: ") && isReadingEspadaLarga){
+                    String espadaLarga = line.replaceFirst("Durability: ", "");
+                    int durabilityEspadaLarga = Integer.parseInt(espadaLarga);
+                    jugador.espadaLarga.durabilidad = durabilityEspadaLarga;
+                    isReadingEspadaLarga = false;
+                    continue;
+                }
+                if(line.startsWith("Hacha{ ")){
+                    isReadingHacha = true;
+                    continue;
+                }
+                if(line.startsWith("Durability: ") && isReadingHacha){
+                    String hacha = line.replaceFirst("Durability: ", "");
+                    int durabilityHacha = Integer.parseInt(hacha);
+                    jugador.hacha.durabilidad = durabilityHacha;
+                    isReadingHacha = false;
+                    continue;
+                }
+                if(line.startsWith("Mazo{ ")){
+                    isReadingMazo = true;
+                    continue;
+                }
+                if(line.startsWith("Durability: ") && isReadingMazo){
+                    String mazo = line.replaceFirst("Durability: ", "");
+                    int durabilityMazo = Integer.parseInt(mazo);
+                    jugador.mazo.durabilidad = durabilityMazo;
+                    isReadingMazo = false;
+                    isReadingWeapons = false;
+                    continue;
+                }
+                if(line.startsWith("inventory: ")){
+                    isReadingInventory = true;
+                    continue;
+                }
+                if(line.startsWith("Hierro{ ") && isReadingInventory){
+                    isReadingHierro = true;
+                    continue;
+                }
+                if(line.startsWith("Amount: ") && isReadingHierro){
+                    String hierro = line.replaceFirst("Amount: ", "");
+                    int amountHierro = Integer.parseInt(hierro);
+                    Hierro.cantidad = amountHierro;
+                    continue;
+                }
+                if(line.startsWith("Plata{ ")){
+                    isReadingPlata = true;
+                    continue;
+                }
+                if (line.startsWith("Amount: ") && isReadingPlata){
+                    String plata = line.replaceFirst("Amount: ", "");
+                    int amountPlata = Integer.parseInt(plata);
+                    Plata.cantidad = amountPlata;
+                    continue;
+                }
+                if(line.startsWith("Acero{ ")){
+                    isReadingAcero = true;
+                    continue;
+                }
+                if(line.startsWith("Amount: ") &&  isReadingAcero){
+                    String acero = line.replaceFirst("Amount: ", "");
+                    int amountAcero = Integer.parseInt(acero);
+                    Acero.cantidad = amountAcero;
+                    continue;
+                }
+                if(line.startsWith("Alma{ ")){
+                    isReadingAlma = true;
+                    continue;
+                }
+                if(line.startsWith("Amount: ") && isReadingAlma){
+                    String alma = line.replaceFirst("Amount: ", "");
+                    int amountAlma = Integer.parseInt(alma);
+                    Alma.cantidad = amountAlma;
+                    continue;
+                }
+                if(line.startsWith("Carbon{ ")){
+                    isReadingCarbon = true;
+                    continue;
+                }
+                if(line.startsWith("Amount: ") && isReadingCarbon){
+                    String carbon = line.replaceFirst("Amount: ", "");
+                    int amountCarbon = Integer.parseInt(carbon);
+                    Carbon.cantidad = amountCarbon;
+                    continue;
+                }
+                if(line.startsWith("Vendas{ ")){
+                    isReadingVendas = true;
+                    continue;
+                }
+                if(line.startsWith("Amount: ") && isReadingVendas){
+                    String vendas = line.replaceFirst("Amount: ", "");
+                    int amountVendas = Integer.parseInt(vendas);
+                    Medicina.cantidad = amountVendas;
+                    isReadingInventory = false;
+                    continue;
+                }
+            }
+            System.out.println("Bienvenido otra vez " + jugador.nombre);
+            System.out.println("La partida se a cargado correctamente.");
+        }
         while (true)
             update();
 
@@ -112,56 +257,19 @@ public class Game {
             fileManagement.crearArchivo(saves);
             fileManagement.anexarInformacion(saves, "Player name: " + jugador.getNombre());
             fileManagement.anexarInformacion(saves, "Player heal: " + jugador.vida);
-            fileManagement.anexarInformacion(saves, "Weapons: \n " + jugador.espada.nombreDelArma + "{ \n"
-                    + "Durability: " + jugador.espada.durabilidad + "\n }" + "\n" + jugador.espadaLarga.nombreDelArma + "{ \n"
-                    + "Durability: " + jugador.espadaLarga.durabilidad + "\n }" + "\n" + jugador.hacha.nombreDelArma + "{ \n"
-                    + "Durability: " + jugador.hacha.durabilidad + "\n }" + "\n" + jugador.mazo.nombreDelArma + "{\n"
-                    + "Durability: " + jugador.mazo.durabilidad + "\n }"
+            fileManagement.anexarInformacion(saves, "Weapons: \n" + jugador.espada.nombreDelArma + "{\n"
+                    + "Durability: " + jugador.espada.durabilidad + "\n}" + "\n" + jugador.espadaLarga.nombreDelArma + "{\n"
+                    + "Durability: " + jugador.espadaLarga.durabilidad + "\n}" + "\n" + jugador.hacha.nombreDelArma + "{\n"
+                    + "Durability: " + jugador.hacha.durabilidad + "\n }" + "\n" + "Mazo" + "{\n"
+                    + "Durability: " + jugador.mazo.durabilidad + "\n}"
             );
             fileManagement.anexarInformacion(saves, "inventory: ");
             for(int i = 0; i < jugador.inventario.objetos.length; i++){
                 Objeto objeto = jugador.inventario.objetos[i];
-                fileManagement.anexarInformacion(saves, "[" + objeto.cantidad + "] " + objeto.tipoDeObjeto);
+                fileManagement.anexarInformacion(saves,  objeto.tipoDeObjeto + "{ \n Amount:" + objeto.cantidad + "\n }");
             }
             System.out.println("La partida se ha guardado correctamente.");
         }
-
-        if(comando == 10){
-            boolean isReadingWeapons = false;
-            boolean isReadingInventory = false;
-            boolean isReadingEspada = false;
-            boolean isReadingEspadaLarga = false;
-            for(String line: fileManagement.leerArchivo(saves)){
-                if(line.startsWith("Player name: ")) {
-                    String name = line.replaceFirst("Player name: ", "");
-                    continue;
-                }
-                if(line.startsWith("Weapons:")) {
-                    isReadingWeapons = true;
-                    continue;
-                }
-                if(line.startsWith("Espada{ ") && isReadingWeapons){
-                    isReadingEspada = true;
-                    continue;
-                }
-                if(line.startsWith("Durability: ") && isReadingEspada){
-                    String durabilityEspada = line.replaceFirst("Durability: ", "");
-                    isReadingEspada = false;
-                    continue;
-                }
-                if(line.startsWith("Espada larga{")){
-                    isReadingEspadaLarga = true;
-                    continue;
-                }
-                if(line.startsWith("Durability: ") && isReadingEspadaLarga){
-                    String durabilityEspadaLarga = line.replaceFirst("Durability: ", "");
-                    isReadingEspadaLarga = false;
-                    continue;
-                }
-                System.out.println(line);
-            }
-        }
-
 
         if (comando == 0) {
 
