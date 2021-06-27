@@ -4,11 +4,12 @@ public class Inventario {
 
     public Objeto[] objetos;
 
-    public Inventario(Objeto...objetos) {
+    public Inventario(Objeto... objetos) {
         this.objetos = objetos;
     }
+
     public void mostrarInventario() {
-        for(int i = 0; i < objetos.length; i++){
+        for (int i = 0; i < objetos.length; i++) {
             Objeto objeto = objetos[i];
             System.out.println("[" + objeto.cantidad + "] " + objeto.tipoDeObjeto);
         }
@@ -23,7 +24,7 @@ public class Inventario {
     }
 
     public Medicina getMedicina() {
-        return (Medicina)  getByName("Vendas");
+        return (Medicina) getByName("Vendas");
     }
 
     public Acero getAcero() {
@@ -39,8 +40,8 @@ public class Inventario {
     }
 
     public Objeto getByName(String name) {
-        for(Objeto objeto : objetos) {
-            if(objeto.tipoDeObjeto.equals(name)) {
+        for (Objeto objeto : objetos) {
+            if (objeto.tipoDeObjeto.equals(name)) {
                 return objeto;
             }
         }

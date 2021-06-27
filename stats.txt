@@ -1,34 +1,34 @@
-Player name: Spectu the king
-Player heal: 100
-Weapons: 
+Player name:spectu the king 
+Player heal:100
+Weapons:
 Espada{
-Durability: 2
+Durability:2
 }
 Espada larga{
-Durability: 100
+Durability:100
 }
 Hacha{
-Durability: 100
- }
-Mazo{
-Durability: 96
+Durability:100
 }
-inventory: 
-Hierro{ 
- Amount:56
- }
-Plata{ 
- Amount:56
- }
-Acero{ 
- Amount:56
- }
-Alma{ 
- Amount:56
- }
-Carbon{ 
- Amount:56
- }
-Vendas{ 
- Amount:56
- }
+Mazo{
+Durability:90
+}
+inventory:
+Hierro{
+Amount:57
+}
+Plata{
+Amount:77
+}
+Acero{
+Amount:0
+}
+Alma{
+Amount:39
+}
+Carbon{
+Amount:67
+}
+Vendas{
+Amount:22
+}

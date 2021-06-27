@@ -18,7 +18,7 @@ public class ScannerWrapper {
             getString();
             return scannerInt;
 
-        } catch(Exception e) {
+        } catch (Exception e) {
 
             System.out.println("El valor introducido es incorrecto!");
 
@@ -30,9 +30,12 @@ public class ScannerWrapper {
     }
 
     public String getString() {
+        try {
 
-        return scanner.nextLine();
-
+            return scanner.nextLine();
+        } catch (Exception e) {
+            return "El valor introducido es incorrecto!";
+        }
     }
 
     public boolean getBoolean() {

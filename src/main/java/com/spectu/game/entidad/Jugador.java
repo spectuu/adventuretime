@@ -66,17 +66,16 @@ public class Jugador extends Entidad {
             armaSelecionada = espada;
             atributosDelArma();
 
-            if(armaSelecionada.durabilidad <= 0){
-                while(true){
+            if (armaSelecionada.durabilidad <= 0) {
+                while (true) {
                     armaSelecionada = null;
                     System.out.println("El arma seleccionada esta rota");
                     seleccionarArma();
-                    if(armaSelecionada != null){
+                    if (armaSelecionada != null) {
                         break;
                     }
                 }
             }
-
 
 
         }
@@ -84,12 +83,12 @@ public class Jugador extends Entidad {
         if (vistaArma == 2) {
             armaSelecionada = espadaLarga;
             atributosDelArma();
-            if(armaSelecionada.durabilidad <= 0){
-                while(true){
+            if (armaSelecionada.durabilidad <= 0) {
+                while (true) {
                     armaSelecionada = null;
                     System.out.println("El arma seleccionada esta rota");
                     seleccionarArma();
-                    if(armaSelecionada != null){
+                    if (armaSelecionada != null) {
                         break;
                     }
                 }
@@ -101,12 +100,12 @@ public class Jugador extends Entidad {
         if (vistaArma == 3) {
             armaSelecionada = hacha;
             atributosDelArma();
-            if(armaSelecionada.durabilidad <= 0){
-                while(true){
+            if (armaSelecionada.durabilidad <= 0) {
+                while (true) {
                     armaSelecionada = null;
                     System.out.println("El arma seleccionada esta rota");
                     seleccionarArma();
-                    if(armaSelecionada != null){
+                    if (armaSelecionada != null) {
                         break;
                     }
                 }
@@ -119,12 +118,12 @@ public class Jugador extends Entidad {
 
             armaSelecionada = mazo;
             atributosDelArma();
-            if(armaSelecionada.durabilidad <= 0){
-                while(true){
+            if (armaSelecionada.durabilidad <= 0) {
+                while (true) {
                     armaSelecionada = null;
                     System.out.println("El arma seleccionada esta rota");
                     seleccionarArma();
-                    if(armaSelecionada != null){
+                    if (armaSelecionada != null) {
                         break;
                     }
                 }
@@ -200,7 +199,7 @@ public class Jugador extends Entidad {
 
         }
 
-        if(enemigo == null){
+        if (enemigo == null) {
 
             return;
         }
@@ -227,13 +226,13 @@ public class Jugador extends Entidad {
 
             if (ataque == 1) {
 
-                if(armaActual.durabilidad <= 0){
+                if (armaActual.durabilidad <= 0) {
 
-                    while(true){
+                    while (true) {
                         armaActual = null;
                         System.out.println("El arma se rompio selecciona otra.");
                         seleccionarArma();
-                        if(armaActual != null){
+                        if (armaActual != null) {
                             break;
                         }
                     }
@@ -242,9 +241,9 @@ public class Jugador extends Entidad {
 
                 if (vida < 0)
                     vida = 0;
-                
+
                 armaActual.durabilidad = armaActual.durabilidad - 2;
-                if(armaActual.durabilidad <= 0)
+                if (armaActual.durabilidad <= 0)
                     armaActual.durabilidad = 0;
 
                 System.out.println("Vida jugador:" + vida);

@@ -6,7 +6,7 @@ public class Objeto {
 
     public String tipoDeObjeto;
     public String Funcion;
-    public static int cantidad;
+    public int cantidad;
 
     public Objeto(String tipoDeObjeto, String funcion, int cantidad) {
 

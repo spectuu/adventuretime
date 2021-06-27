@@ -56,7 +56,7 @@ public class fileManagement {
         try {
             BufferedReader entrada = new BufferedReader(new FileReader(archivo));
             String lectura = entrada.readLine();
-            while (lectura != null){
+            while (lectura != null) {
                 lista.add(lectura);
                 lectura = entrada.readLine();
             }
