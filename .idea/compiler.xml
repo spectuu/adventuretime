@@ -9,7 +9,6 @@
         <module name="AdventureTime" />
         <module name="adventuretime" />
         <module name="adventuretime-master" />
-        <module name="rpgquest" />
         <module name="RPGQuest" />
         <module name="game-test" />
       </profile>
